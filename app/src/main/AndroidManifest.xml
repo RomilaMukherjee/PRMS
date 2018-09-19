@@ -40,7 +40,8 @@
         <activity
             android:name=".programSchedule.android.ui.MaintainScheduleProgramActivity"
             android:label="@string/title_activity_maintain_schedule_program"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".programSchedule.android.ui.CreateScheduleActivity" />
     </application>
 
 </manifest>
