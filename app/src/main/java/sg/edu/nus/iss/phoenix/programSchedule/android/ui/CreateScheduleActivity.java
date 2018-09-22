@@ -9,14 +9,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import java.util.Calendar;
 import java.util.Date;
 
 import sg.edu.nus.iss.phoenix.R;
-
-import static java.lang.String.*;
+import sg.edu.nus.iss.phoenix.core.android.controller.ControlFactory;
+import sg.edu.nus.iss.phoenix.programSchedule.entity.AnnualSchedule;
 
 public class CreateScheduleActivity extends AppCompatActivity {
 
@@ -44,13 +43,19 @@ public class CreateScheduleActivity extends AppCompatActivity {
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                         annualScheduleyear.setText(""+year);
                     }
-                }, mYear, mMonth, mYear);
+                }, mYear, mMonth, mDay);
                 Date currentDate = new Date();
                 chooseYear.getDatePicker().setMinDate(currentDate.getTime());
                 chooseYear.show();
             }
         });
 
-        //chooseYear.on
+        createSchedule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AnnualSchedule annualSchedule = new AnnualSchedule(Integer.parseInt(annualScheduleyear.getText().toString()));
+                ControlFactory.getMaintainScheduleController().selectCreateSchedule(annualSchedule);
+            }
+        });
     }
 }
