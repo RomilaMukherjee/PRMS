@@ -9,6 +9,7 @@ import sg.edu.nus.iss.phoenix.core.android.controller.MainController;
 import sg.edu.nus.iss.phoenix.programSchedule.android.ui.MaintainProgramSlotActivity;
 import sg.edu.nus.iss.phoenix.programSchedule.android.ui.MaintainScheduleProgramActivity;
 import sg.edu.nus.iss.phoenix.programSchedule.android.ui.MaintainScheduleActivity;
+import sg.edu.nus.iss.phoenix.programSchedule.android.ui.ProgramSlotListActivity;
 import sg.edu.nus.iss.phoenix.programSchedule.entity.AnnualSchedule;
 import sg.edu.nus.iss.phoenix.programSchedule.entity.ProgramSlot;
 
@@ -41,6 +42,13 @@ public class MaintainScheduleController {
 
     public void annualScheduleCreated(Boolean success) {
         startUseCase();
+    }
+
+
+
+    public void startProgramSlot(){
+        Intent intent = new Intent(MainController.getApp(), ProgramSlotListActivity.class);
+        MainController.displayScreen(intent);
     }
 
     /**
