@@ -8,7 +8,7 @@ import android.widget.Button;
 import sg.edu.nus.iss.phoenix.R;
 import sg.edu.nus.iss.phoenix.core.android.controller.ControlFactory;
 
-public class ScheduleProgramActivity extends AppCompatActivity {
+public class MaintainScheduleActivity extends AppCompatActivity {
 
     private Button annualScheduleButton;
     private Button programSlotButton;
