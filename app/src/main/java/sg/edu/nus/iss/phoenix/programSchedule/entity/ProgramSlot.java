@@ -12,6 +12,8 @@ public class ProgramSlot {
     private Date dateOfProgram;
     private Date startTime;
     private String time;
+    private int annualYear;
+    private Date weekStartDate;
 
 
     public String getProgramName() {
@@ -46,4 +48,11 @@ public class ProgramSlot {
         this.time = time;
     }
 
+    public int getAnnualYear() { return annualYear;}
+
+    public void setAnnualYear(int annualYear) { this.annualYear = annualYear;}
+
+    public Date getWeekStartDate() {return weekStartDate;}
+
+    public void setWeekStartDate(Date weekStartDate) {this.weekStartDate = weekStartDate;}
 }
