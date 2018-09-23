@@ -6,6 +6,7 @@ import sg.edu.nus.iss.phoenix.programSchedule.android.delegate.CreateScheduleDel
 import sg.edu.nus.iss.phoenix.programSchedule.android.ui.CreateScheduleActivity;
 import sg.edu.nus.iss.phoenix.core.android.controller.MainController;
 import sg.edu.nus.iss.phoenix.programSchedule.android.ui.MaintainScheduleProgramActivity;
+import sg.edu.nus.iss.phoenix.programSchedule.android.ui.ScheduleProgramActivity;
 import sg.edu.nus.iss.phoenix.programSchedule.entity.AnnualSchedule;
 
 /**
@@ -14,7 +15,7 @@ import sg.edu.nus.iss.phoenix.programSchedule.entity.AnnualSchedule;
 
 public class MaintainScheduleController {
     public void startUseCase() {
-        Intent intent = new Intent(MainController.getApp(), MaintainScheduleProgramActivity.class);
+        Intent intent = new Intent(MainController.getApp(), ScheduleProgramActivity.class);
         MainController.displayScreen(intent);
     }
 
@@ -25,6 +26,11 @@ public class MaintainScheduleController {
 
     public void selectCreateSchedule(AnnualSchedule annualSchedule) {
         new CreateScheduleDelegate(this).execute(annualSchedule);
+    }
+
+    public void startAnnualSchedule() {
+        Intent intent = new Intent(MainController.getApp(), MaintainScheduleProgramActivity.class);
+        MainController.displayScreen(intent);
     }
 
     public void annualScheduleCreated(Boolean success) {

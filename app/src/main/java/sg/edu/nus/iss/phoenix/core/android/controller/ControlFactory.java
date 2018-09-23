@@ -36,4 +36,9 @@ public class ControlFactory {
         if (maintainScheduleController == null) maintainScheduleController = new MaintainScheduleController();
         return maintainScheduleController;
     }
+
+    public static MaintainScheduleController getAnnualScheduleController() {
+        if (maintainScheduleController == null) maintainScheduleController = new MaintainScheduleController();
+        return maintainScheduleController;
+    }
 }

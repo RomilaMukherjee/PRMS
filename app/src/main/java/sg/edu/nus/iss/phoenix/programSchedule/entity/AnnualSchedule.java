@@ -6,6 +6,7 @@ package sg.edu.nus.iss.phoenix.programSchedule.entity;
 
 public class AnnualSchedule {
     private int year;
+    private String assignedBy;
 
     public AnnualSchedule(int year) {
         this.year = year;
@@ -17,5 +18,13 @@ public class AnnualSchedule {
 
     public void setYear(int year) {
         this.year = year;
+    }
+
+    public String getAssignedBy() {
+        return assignedBy;
+    }
+
+    public void setAssignedBy(String assignedBy) {
+        this.assignedBy = assignedBy;
     }
 }
