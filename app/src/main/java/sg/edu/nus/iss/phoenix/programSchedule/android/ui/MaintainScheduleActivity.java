@@ -15,7 +15,7 @@ public class MaintainScheduleActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_schedule_program);
+        setContentView(R.layout.activity_maintain_schedule);
 
         annualScheduleButton = (Button) findViewById(R.id.annaul_schedule);
         programSlotButton = (Button) findViewById(R.id.program_slot);
