@@ -35,7 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Start Time"
-        tools:text="Duration" />
+        tools:text="Start Taime" />
     <EditText
         android:id="@+id/maintain_program_slot_start_time_view"
         android:layout_width="match_parent"
@@ -58,5 +58,56 @@
         tools:text="30 minutes"
         />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Week"
+        tools:text="Week date" />
+    <EditText
+        android:id="@+id/maintain_program_slot_week_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLength="8"
+        />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Year"
+        tools:text="Year" />
+    <EditText
+        android:id="@+id/maintain_program_slot_year_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLength="8"
+        tools:text="Year"
+       />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Producer"
+        tools:text="Producer" />
+    <EditText
+        android:id="@+id/maintain_program_slot_producer_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLength="8"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Presenter"
+        tools:text="Presenter" />
+    <EditText
+        android:id="@+id/maintain_program_slot_presenter_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLength="8"
+        />
 </LinearLayout>
+
+
+
