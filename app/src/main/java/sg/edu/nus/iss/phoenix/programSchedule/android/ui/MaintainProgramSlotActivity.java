@@ -25,6 +25,7 @@ public class MaintainProgramSlotActivity extends AppCompatActivity {
     private EditText mPSStartTimeText;
     private EditText mPSDurationEditText;
     private ProgramSlot programToCopy = null;
+    private static final String TAG = "MaintainProgramSlotActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,11 @@ public class MaintainProgramSlotActivity extends AppCompatActivity {
         mPSStartTimeText=(EditText) findViewById(R.id.maintain_program_slot_start_time_view);
         mPSDurationEditText = (EditText) findViewById(R.id.maintain_program_slot_duration_text_view);
 
+        try{
+
+        }catch(Exception e){
+            Log.e(TAG,"Error while creating copy");
+        }
         // Keep the KeyListener for name EditText so as to enable editing after disabling it.
 
     }
