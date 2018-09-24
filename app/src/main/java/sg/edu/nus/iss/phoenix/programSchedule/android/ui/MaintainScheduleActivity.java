@@ -26,5 +26,12 @@ public class MaintainScheduleActivity extends AppCompatActivity {
                 ControlFactory.getAnnualScheduleController().startAnnualSchedule();
             }
         });
+
+        programSlotButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ControlFactory.getProgramSlotController().startProgramSlot();
+            }
+        });
     }
 }
