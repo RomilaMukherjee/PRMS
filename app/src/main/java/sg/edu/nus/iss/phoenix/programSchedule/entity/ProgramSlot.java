@@ -15,6 +15,8 @@ public class ProgramSlot implements Serializable {
     private String time;
     private int annualYear;
     private Date weekStartDate;
+    private String producerName;
+    private String presenterName;
 
 
     public String getProgramName() {
@@ -56,4 +58,12 @@ public class ProgramSlot implements Serializable {
     public Date getWeekStartDate() {return weekStartDate;}
 
     public void setWeekStartDate(Date weekStartDate) {this.weekStartDate = weekStartDate;}
+
+    public String getProducerName() {return producerName;}
+
+    public void setProducerName(String producerName) {this.producerName = producerName;}
+
+    public String getPresenterName() {return presenterName;}
+
+    public void setPresenterName(String presenterName) {this.presenterName = presenterName;}
 }
