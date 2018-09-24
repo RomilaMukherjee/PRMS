@@ -52,15 +52,15 @@ public class MaintainScheduleController {
     }
 
     /**
-     * API to disply copy program
+     * API to display copy program
      * slot screen
-     * @param progSlot
+     * @param progSlotObj
      */
-    public void copyProgramSlot(ProgramSlot progSlot){
-        progSlotObj = progSlot;
-        Log.v(TAG, "Copied radio program: " + progSlotObj.getProgramName());
-        Intent intent = new Intent(MainController.getApp(), MaintainProgramSlotActivity.class);
-        MainController.displayScreen(intent);
+    public void copyProgramSlot(ProgramSlot progSlotObj){
+       Log.v(TAG, "Copied radio program: " + progSlotObj.getProgramName());
+        Intent intentObj = new Intent(MainController.getApp(), MaintainProgramSlotActivity.class);
+        intentObj.putExtra(progSlotObj.getProgramName(), progSlotObj);
+        MainController.displayScreen(intentObj);
     }
 
 }
