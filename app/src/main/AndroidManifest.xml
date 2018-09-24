@@ -43,6 +43,13 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".programSchedule.android.ui.CreateScheduleActivity" />
         <activity android:name=".programSchedule.android.ui.MaintainScheduleActivity"></activity>
+
+        <activity
+            android:name=".programSchedule.android.ui.ProgramSlotListActivity"
+            android:label="@string/title_activity_program_slot_list"/>
+        <activity
+            android:name=".programSchedule.android.ui.MaintainProgramSlotActivity"
+            android:label="@string/title_maintain_program_slot"/>
     </application>
 
 </manifest>
