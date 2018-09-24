@@ -12,6 +12,7 @@ import sg.edu.nus.iss.phoenix.programSchedule.android.ui.MaintainScheduleActivit
 import sg.edu.nus.iss.phoenix.programSchedule.android.ui.ProgramSlotListActivity;
 import sg.edu.nus.iss.phoenix.programSchedule.entity.AnnualSchedule;
 import sg.edu.nus.iss.phoenix.programSchedule.entity.ProgramSlot;
+import sg.edu.nus.iss.phoenix.utility.ApplicationConstant;
 
 import static android.content.ContentValues.TAG;
 
@@ -57,9 +58,9 @@ public class MaintainScheduleController {
      * @param progSlotObj
      */
     public void copyProgramSlot(ProgramSlot progSlotObj){
-       Log.v(TAG, "Copied radio program: " + progSlotObj.getProgramName());
+        Log.v(TAG, "Copied radio program: " + progSlotObj.getProgramName());
         Intent intentObj = new Intent(MainController.getApp(), MaintainProgramSlotActivity.class);
-        intentObj.putExtra(progSlotObj.getProgramName(), progSlotObj);
+        intentObj.putExtra(ApplicationConstant.programNameParam, progSlotObj);
         MainController.displayScreen(intentObj);
     }
 
