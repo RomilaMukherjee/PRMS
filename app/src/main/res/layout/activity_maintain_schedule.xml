@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="sg.edu.nus.iss.phoenix.programSchedule.android.ui.ScheduleProgramActivity">
+    tools:context="sg.edu.nus.iss.phoenix.programSchedule.android.ui.MaintainScheduleActivity">
 
     <Button
         android:layout_width="match_parent"
