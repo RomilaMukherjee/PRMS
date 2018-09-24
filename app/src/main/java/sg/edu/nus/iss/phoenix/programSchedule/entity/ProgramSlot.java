@@ -1,12 +1,13 @@
 package sg.edu.nus.iss.phoenix.programSchedule.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by Romila on 22-09-2018.
  */
 
-public class ProgramSlot {
+public class ProgramSlot implements Serializable {
 
     private String programName;
     private Date dateOfProgram;
