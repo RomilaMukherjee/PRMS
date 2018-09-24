@@ -30,7 +30,7 @@ public class MaintainProgramSlotActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_radio_program);
+        setContentView(R.layout.activity_program_slot);
 
         // Find all relevant views that we will need to read user input from
         mPNameEditText = (EditText) findViewById(R.id.maintain_program_name_text_view);
