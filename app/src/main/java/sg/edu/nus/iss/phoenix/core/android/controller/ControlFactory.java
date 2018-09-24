@@ -41,4 +41,9 @@ public class ControlFactory {
         if (maintainScheduleController == null) maintainScheduleController = new MaintainScheduleController();
         return maintainScheduleController;
     }
+
+    public static MaintainScheduleController getProgramSlotController() {
+        if (maintainScheduleController == null) maintainScheduleController = new MaintainScheduleController();
+        return maintainScheduleController;
+    }
 }
