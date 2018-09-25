@@ -32,4 +32,6 @@
     <color name="lbl_name">#333333</color>
     <color name="btn_logut_bg">#ff6861</color>
     <color name="comment_light_background">#d6d6d6</color>
+    <color name="btn_create_slot">#2626ae</color>
+    <color name="btn_create_slot_bg">#eceef1</color>
 </resources>
