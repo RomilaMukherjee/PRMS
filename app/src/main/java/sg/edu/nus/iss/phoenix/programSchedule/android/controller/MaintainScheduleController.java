@@ -3,6 +3,7 @@ package sg.edu.nus.iss.phoenix.programSchedule.android.controller;
 import android.content.Intent;
 import android.util.Log;
 
+import sg.edu.nus.iss.phoenix.programSchedule.android.delegate.CopyProgramSlotDelegate;
 import sg.edu.nus.iss.phoenix.programSchedule.android.delegate.CreateScheduleDelegate;
 import sg.edu.nus.iss.phoenix.programSchedule.android.ui.CreateScheduleActivity;
 import sg.edu.nus.iss.phoenix.core.android.controller.MainController;
@@ -14,14 +15,17 @@ import sg.edu.nus.iss.phoenix.programSchedule.entity.AnnualSchedule;
 import sg.edu.nus.iss.phoenix.programSchedule.entity.ProgramSlot;
 import sg.edu.nus.iss.phoenix.utility.ApplicationConstant;
 
-import static android.content.ContentValues.TAG;
 
 /**
  * Created by Ragu on 18/9/2018.
  */
 
 public class MaintainScheduleController {
-    private ProgramSlot progSlotObj;
+
+    // Tag for logging.
+    private static final String TAG = MaintainScheduleController.class.getName();
+    private MaintainProgramSlotActivity slotCreateScreen;
+
     public void startUseCase() {
         Intent intent = new Intent(MainController.getApp(), MaintainScheduleActivity.class);
         MainController.displayScreen(intent);
@@ -62,6 +66,16 @@ public class MaintainScheduleController {
         Intent intentObj = new Intent(MainController.getApp(), MaintainProgramSlotActivity.class);
         intentObj.putExtra(ApplicationConstant.programNameParam, progSlotObj);
         MainController.displayScreen(intentObj);
+    }
+
+    /**
+     * API to invoke rest endpoint
+     * for creating slot
+     * @param slotObj
+     */
+    public void createSlot(ProgramSlot slotObj) {
+        slotCreateScreen.showLoadingIndicatorForSlot();
+        new CopyProgramSlotDelegate(this).execute(slotObj);
     }
 
 }
