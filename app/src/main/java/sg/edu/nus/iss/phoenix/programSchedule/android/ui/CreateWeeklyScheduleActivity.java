@@ -31,7 +31,7 @@ public class CreateWeeklyScheduleActivity extends AppCompatActivity {
     private Button createWeeklySchedule;
     private SharedPreferences sharedPreferences;
     private static final String TAG = CreateWeeklyScheduleActivity.class.getName();
-    private RetriveWeeklyScheduleDelegate retriveWeeklyScheduleDelegate;
+    //private RetriveWeeklyScheduleDelegate retriveWeeklyScheduleDelegate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,8 +92,8 @@ public class CreateWeeklyScheduleActivity extends AppCompatActivity {
                 }
             });
 
-        retriveWeeklyScheduleDelegate = new RetriveWeeklyScheduleDelegate();
-        retriveWeeklyScheduleDelegate.execute("all_weeklySchedule");
+//        retriveWeeklyScheduleDelegate = new RetriveWeeklyScheduleDelegate();
+//        retriveWeeklyScheduleDelegate.execute("all_weeklySchedule");
 
     }
 }
