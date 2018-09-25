@@ -6,7 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -31,6 +34,8 @@ public class MaintainProgramSlotActivity extends AppCompatActivity {
     private EditText mPSYearEditText;
     private EditText mPSProducerText;
     private EditText mPSPresenterText;
+    private Button mbtn_btnCopySlot;
+    private ProgressBar mslot_loading_indicator;
 
 
 
@@ -55,6 +60,8 @@ public class MaintainProgramSlotActivity extends AppCompatActivity {
         mPSYearEditText = (EditText)findViewById(R.id.maintain_program_slot_year_text_view);
         mPSProducerText = (EditText)findViewById(R.id.maintain_program_slot_producer_text_view);
         mPSPresenterText = (EditText)findViewById(R.id.maintain_program_slot_presenter_text_view);
+        mbtn_btnCopySlot = (Button)findViewById(R.id.btnCopySlot);
+        mslot_loading_indicator = (ProgressBar) findViewById(R.id.pb_slot_loading_indicator);
 
         try{
             final ProgramSlot editSlotObj = (ProgramSlot) getIntent().getSerializableExtra(ApplicationConstant.programNameParam);
@@ -75,12 +82,27 @@ public class MaintainProgramSlotActivity extends AppCompatActivity {
                 mPSPresenterText.setText(editSlotObj.getPresenterName());
             }
 
+            // Set a click listener on Login Button
+            mbtn_btnCopySlot.setOnClickListener(new View.OnClickListener() {
+                // The code in this method will be executed when the numbers category is clicked on.
+                @Override
+                public void onClick(View view) {
+                    ControlFactory.getMaintainScheduleController().createSlot(editSlotObj);
+
+                }
+
+            });
         }catch(Exception e){
             Log.e(TAG,"Error while creating copy::"+e);
         }
         // Keep the KeyListener for name EditText so as to enable editing after disabling it.
 
     }
+
+    public void showLoadingIndicatorForSlot() {
+        mslot_loading_indicator.setVisibility(View.VISIBLE);
+    }
+
 
 
 }
