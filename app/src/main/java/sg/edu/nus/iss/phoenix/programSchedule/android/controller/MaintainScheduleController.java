@@ -16,6 +16,7 @@ import sg.edu.nus.iss.phoenix.programSchedule.android.ui.MaintainScheduleActivit
 import sg.edu.nus.iss.phoenix.programSchedule.android.ui.ProgramSlotListActivity;
 import sg.edu.nus.iss.phoenix.programSchedule.entity.AnnualSchedule;
 import sg.edu.nus.iss.phoenix.programSchedule.entity.ProgramSlot;
+import sg.edu.nus.iss.phoenix.programSchedule.entity.WeeklySchedule;
 import sg.edu.nus.iss.phoenix.utility.ApplicationConstant;
 
 import static android.content.ContentValues.TAG;
