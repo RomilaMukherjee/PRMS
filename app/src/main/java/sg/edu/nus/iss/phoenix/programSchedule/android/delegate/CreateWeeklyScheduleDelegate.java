@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 
 import sg.edu.nus.iss.phoenix.programSchedule.android.controller.MaintainScheduleController;
 import sg.edu.nus.iss.phoenix.programSchedule.android.ui.CreateWeeklyScheduleActivity;
@@ -27,6 +28,7 @@ public class CreateWeeklyScheduleDelegate extends AsyncTask<WeeklySchedule, Void
 
     private final MaintainScheduleController maintainScheduleController;
     private static final String TAG = CreateWeeklyScheduleActivity.class.getName();
+    SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 
     public CreateWeeklyScheduleDelegate(MaintainScheduleController maintainScheduleController) {
         this.maintainScheduleController = maintainScheduleController;
@@ -46,14 +48,15 @@ public class CreateWeeklyScheduleDelegate extends AsyncTask<WeeklySchedule, Void
         }
 
         JSONObject json = new JSONObject();
+        String startDate = sdformat.format(weeklySchedules[0].getStartDate());
+
         try {
-            json.put("startDate", weeklySchedules[0].getStartDate());
+            json.put("startDate", startDate);
             json.put("assignedBy", weeklySchedules[0].getAssignedBy());
-            json.put("year", weeklySchedules[0].getYear());
         } catch (JSONException e) {
             Log.v(TAG, e.getMessage());
         }
-
+        Log.v(TAG, "JSON :" + json.toString());
         boolean success = false;
         HttpURLConnection httpURLConnection = null;
         DataOutputStream dos = null;
@@ -66,7 +69,7 @@ public class CreateWeeklyScheduleDelegate extends AsyncTask<WeeklySchedule, Void
             httpURLConnection.setDoOutput(true);
             dos = new DataOutputStream(httpURLConnection.getOutputStream());
             dos.writeUTF(json.toString());
-            dos.write(256);
+            dos.write(512);
             Log.v(TAG, "Http PUT response " + httpURLConnection.getResponseCode());
             success = true;
         } catch (IOException exception) {
