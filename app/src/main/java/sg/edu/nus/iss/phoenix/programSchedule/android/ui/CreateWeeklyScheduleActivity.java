@@ -19,6 +19,7 @@ import java.util.Date;
 
 import sg.edu.nus.iss.phoenix.R;
 import sg.edu.nus.iss.phoenix.core.android.controller.ControlFactory;
+import sg.edu.nus.iss.phoenix.programSchedule.android.delegate.RetriveWeeklyScheduleDelegate;
 import sg.edu.nus.iss.phoenix.programSchedule.entity.AnnualSchedule;
 import sg.edu.nus.iss.phoenix.programSchedule.entity.WeeklySchedule;
 
@@ -30,6 +31,7 @@ public class CreateWeeklyScheduleActivity extends AppCompatActivity {
     private Button createWeeklySchedule;
     private SharedPreferences sharedPreferences;
     private static final String TAG = CreateWeeklyScheduleActivity.class.getName();
+    private RetriveWeeklyScheduleDelegate retriveWeeklyScheduleDelegate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,6 +91,9 @@ public class CreateWeeklyScheduleActivity extends AppCompatActivity {
                     }
                 }
             });
+
+        retriveWeeklyScheduleDelegate = new RetriveWeeklyScheduleDelegate();
+        retriveWeeklyScheduleDelegate.execute("all_weeklySchedule");
 
     }
 }
