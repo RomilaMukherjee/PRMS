@@ -14,6 +14,8 @@ import sg.edu.nus.iss.phoenix.programSchedule.android.ui.MaintainProgramSlotActi
 import sg.edu.nus.iss.phoenix.programSchedule.android.ui.MaintainScheduleProgramActivity;
 import sg.edu.nus.iss.phoenix.programSchedule.android.ui.MaintainScheduleActivity;
 import sg.edu.nus.iss.phoenix.programSchedule.android.ui.ProgramSlotListActivity;
+import sg.edu.nus.iss.phoenix.programSchedule.android.ui.CreateProgramSlotActivity;
+import sg.edu.nus.iss.phoenix.programSchedule.android.ui.UpdateProgramSlotActivity;
 import sg.edu.nus.iss.phoenix.programSchedule.entity.AnnualSchedule;
 import sg.edu.nus.iss.phoenix.programSchedule.entity.ProgramSlot;
 import sg.edu.nus.iss.phoenix.programSchedule.entity.WeeklySchedule;
@@ -59,6 +61,24 @@ public class MaintainScheduleController {
     public void annualScheduleCreated(Boolean success) {
         startUseCase();
     }
+
+    public void startCreateProgramSlot() {
+        Intent intent = new Intent(MainController.getApp(), CreateProgramSlotActivity.class);
+        MainController.displayScreen(intent);
+    }
+
+    public void startUpdateProgramSlot() {
+        Intent intent = new Intent(MainController.getApp(), UpdateProgramSlotActivity.class);
+        MainController.displayScreen(intent);
+    }
+
+    public void programSlotCreated(Boolean success) {
+        startUseCase();
+    }
+
+    public void programSlotUpdated(Boolean success) {startUseCase(); }
+
+    public void programSlotDeleted(Boolean success) {startUseCase(); }
 
     public void onDisplayProgramList(MaintainScheduleProgramActivity maintainScheduleProgramActivity) {
         this.maintainScheduleProgramActivity = maintainScheduleProgramActivity;
