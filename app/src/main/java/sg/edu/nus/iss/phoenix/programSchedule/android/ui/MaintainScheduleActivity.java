@@ -30,7 +30,7 @@ public class MaintainScheduleActivity extends AppCompatActivity {
         programSlotButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ControlFactory.getProgramSlotController().startProgramSlot();
+//                ControlFactory.getProgramSlotController().startProgramSlot();
             }
         });
     }
