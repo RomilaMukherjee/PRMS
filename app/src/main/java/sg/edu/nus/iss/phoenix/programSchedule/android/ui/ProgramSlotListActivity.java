@@ -17,6 +17,7 @@ import sg.edu.nus.iss.phoenix.programSchedule.entity.ProgramSlot;
 
 public class ProgramSlotListActivity extends AppCompatActivity {
 
+    private static final String TAG = "ProgramSlotListActivity";
     SimpleDateFormat sdformat = new SimpleDateFormat("dd/MM/yyyy");
     SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
 
@@ -34,22 +35,29 @@ public class ProgramSlotListActivity extends AppCompatActivity {
             public void onClick(View view) {
                /**Create program Slot dummy object to copy and persist data**/
                 ProgramSlot slotObj = new ProgramSlot();
-                slotObj.setAnnualYear(2018);
-                slotObj.setProgramName("charity");
+
+                int annualYear=2018;
+                String programName="charity";
                 String dateInStr = "22/09/2018";
                 String timeInStr = "06:30:00";
                 String weekDateInStr = "17/09/2018";
                 String progDuration = "00:30:00";
+                String producer = "dogbert";
+                String presenter = "dilbert";
                 try{
                     Date programStartDate = sdformat.parse(dateInStr);
                     Date programStartTime = timeFormat.parse(timeInStr);
                     Date weekStartDate = sdformat.parse(weekDateInStr);
+                    slotObj.setAnnualYear(annualYear);
+                    slotObj.setProgramName(programName);
                     slotObj.setDateOfProgram(programStartDate);
                     slotObj.setStartTime(programStartTime);
                     slotObj.setWeekStartDate(weekStartDate);
                     slotObj.setTime(progDuration);
+                    slotObj.setProducerName(producer);
+                    slotObj.setPresenterName(presenter);
                 }catch(ParseException exceptObj){
-                    System.out.println("Error while parsing");
+                   Log.e(TAG,"Error while parsing");
                 }
                 ControlFactory.getMaintainScheduleController().copyProgramSlot(slotObj);
             }
