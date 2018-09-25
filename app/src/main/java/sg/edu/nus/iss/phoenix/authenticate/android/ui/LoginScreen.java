@@ -50,6 +50,7 @@ public class LoginScreen extends AppCompatActivity {
             }
 
         });
+        ControlFactory.getLoginController().getPreferences(getSharedPreferences("UserCredentials", MODE_PRIVATE));
     }
 
     @Override

@@ -3,6 +3,7 @@ package sg.edu.nus.iss.phoenix.programSchedule.android.ui;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -22,6 +23,7 @@ public class CreateScheduleActivity extends AppCompatActivity {
     private EditText annualScheduleyear;
     private DatePickerDialog chooseYear;
     private Button createSchedule;
+    private SharedPreferences sharedPreferences;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -30,6 +32,7 @@ public class CreateScheduleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_schedule);
         annualScheduleyear = (EditText) findViewById(R.id.annula_schedule_year);
         createSchedule = (Button) findViewById(R.id.create_annual_schedule);
+        sharedPreferences = getSharedPreferences("UserCredentials", MODE_PRIVATE);
 
         annualScheduleyear.setOnClickListener(new View.OnClickListener() {
             final Calendar c = Calendar.getInstance();
@@ -53,7 +56,7 @@ public class CreateScheduleActivity extends AppCompatActivity {
         createSchedule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AnnualSchedule annualSchedule = new AnnualSchedule(Integer.parseInt(annualScheduleyear.getText().toString()));
+                AnnualSchedule annualSchedule = new AnnualSchedule(Integer.parseInt(annualScheduleyear.getText().toString()), sharedPreferences.getString("username", "No Name found"));
                 ControlFactory.getMaintainScheduleController().selectCreateSchedule(annualSchedule);
             }
         });

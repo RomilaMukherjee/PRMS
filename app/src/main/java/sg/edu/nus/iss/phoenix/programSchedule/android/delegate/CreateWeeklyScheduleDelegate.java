@@ -15,28 +15,27 @@ import java.net.URL;
 
 import sg.edu.nus.iss.phoenix.programSchedule.android.controller.MaintainScheduleController;
 import sg.edu.nus.iss.phoenix.programSchedule.android.ui.CreateWeeklyScheduleActivity;
-import sg.edu.nus.iss.phoenix.programSchedule.entity.AnnualSchedule;
+import sg.edu.nus.iss.phoenix.programSchedule.entity.WeeklySchedule;
 
-import static sg.edu.nus.iss.phoenix.core.android.delegate.DelegateHelper.PRMS_BASE_URL_RADIO_PROGRAM;
 import static sg.edu.nus.iss.phoenix.core.android.delegate.DelegateHelper.PRMS_BASE_URL_PROGRAM_SCHEDULE;
 
 /**
- * Created by Ragu on 19/9/2018.
+ * Created by Ragu on 24/9/2018.
  */
 
-public class CreateScheduleDelegate extends AsyncTask<AnnualSchedule, Void, Boolean> {
+public class CreateWeeklyScheduleDelegate extends AsyncTask<WeeklySchedule, Void, Boolean> {
 
     private final MaintainScheduleController maintainScheduleController;
+    private static final String TAG = CreateWeeklyScheduleActivity.class.getName();
 
-    private static final String TAG = CreateScheduleDelegate.class.getName();
-    public CreateScheduleDelegate(MaintainScheduleController maintainScheduleController) {
+    public CreateWeeklyScheduleDelegate(MaintainScheduleController maintainScheduleController) {
         this.maintainScheduleController = maintainScheduleController;
     }
 
     @Override
-    protected Boolean doInBackground(AnnualSchedule... annualSchedules) {
+    protected Boolean doInBackground(WeeklySchedule... weeklySchedules) {
         Uri builtUri = Uri.parse(PRMS_BASE_URL_PROGRAM_SCHEDULE).buildUpon().build();
-        builtUri = Uri.withAppendedPath(builtUri,"create_annualschedule").buildUpon().build();
+        builtUri = Uri.withAppendedPath(builtUri,"create_weeklyschedule").buildUpon().build();
         Log.v(TAG, builtUri.toString());
         URL url = null;
         try {
@@ -48,8 +47,9 @@ public class CreateScheduleDelegate extends AsyncTask<AnnualSchedule, Void, Bool
 
         JSONObject json = new JSONObject();
         try {
-            json.put("year", annualSchedules[0].getYear());
-            json.put("assignedBy", annualSchedules[0].getAssignedBy());
+            json.put("startDate", weeklySchedules[0].getStartDate());
+            json.put("assignedBy", weeklySchedules[0].getAssignedBy());
+            json.put("year", weeklySchedules[0].getYear());
         } catch (JSONException e) {
             Log.v(TAG, e.getMessage());
         }
@@ -84,7 +84,7 @@ public class CreateScheduleDelegate extends AsyncTask<AnnualSchedule, Void, Bool
         }
         return new Boolean(success);
     }
-
+    // private final MaintainScheduleController maintainScheduleController;
     @Override
     protected void onPostExecute(Boolean result) {
         maintainScheduleController.annualScheduleCreated(result.booleanValue());
