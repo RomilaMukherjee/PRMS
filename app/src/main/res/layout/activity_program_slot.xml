@@ -1,113 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    tools:context=".programSchedule.android.ui.MaintainProgramSlotActivity">
+    android:padding="16dp">
+
+    <LinearLayout android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        tools:context=".programSchedule.android.ui.MaintainProgramSlotActivity">
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Program Name"
-        tools:text="Name" />
-    <EditText
-        android:id="@+id/maintain_program_name_text_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="Name" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Program Name"
+            tools:text="Name" />
+        <EditText
+            android:id="@+id/maintain_program_name_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Name" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Program Date"
-        tools:text="Date" />
-    <EditText
-        android:id="@+id/maintain_program_startDate_text_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="one" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Program Date"
+            tools:text="Date" />
+        <EditText
+            android:id="@+id/maintain_program_startDate_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="one" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Start Time"
-        tools:text="Start Taime" />
-    <EditText
-        android:id="@+id/maintain_program_slot_start_time_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:maxLength="8"
-        android:text="00:30:00"
-        tools:text="00:30:00" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Start Time"
+            tools:text="Start Taime" />
+        <EditText
+            android:id="@+id/maintain_program_slot_start_time_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLength="8"
+            android:text="00:30:00"
+            tools:text="00:30:00" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Duration"
-        tools:text="Duration" />
-    <EditText
-        android:id="@+id/maintain_program_slot_duration_text_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:maxLength="8"
-        android:text="30"
-        tools:text="30 minutes"
-        />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Duration"
+            tools:text="Duration" />
+        <EditText
+            android:id="@+id/maintain_program_slot_duration_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLength="8"
+            android:text="30"
+            tools:text="30 minutes"
+            />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Week"
-        tools:text="Week date" />
-    <EditText
-        android:id="@+id/maintain_program_slot_week_text_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:maxLength="8"
-        />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Week"
+            tools:text="Week date" />
+        <EditText
+            android:id="@+id/maintain_program_slot_week_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLength="8"
+            />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Year"
-        tools:text="Year" />
-    <EditText
-        android:id="@+id/maintain_program_slot_year_text_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:maxLength="8"
-        tools:text="Year"
-       />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Year"
+            tools:text="Year" />
+        <EditText
+            android:id="@+id/maintain_program_slot_year_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLength="8"
+            tools:text="Year"
+           />
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Producer"
-        tools:text="Producer" />
-    <EditText
-        android:id="@+id/maintain_program_slot_producer_text_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:maxLength="8"
-        />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Producer"
+            tools:text="Producer" />
+        <EditText
+            android:id="@+id/maintain_program_slot_producer_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLength="8"
+            />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Presenter"
-        tools:text="Presenter" />
-    <EditText
-        android:id="@+id/maintain_program_slot_presenter_text_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:maxLength="8"
-        />
-</LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Presenter"
+            tools:text="Presenter" />
+        <EditText
+            android:id="@+id/maintain_program_slot_presenter_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLength="8"
+            />
 
+        <!-- Login Button -->
+
+        <Button
+            android:id="@+id/btnCopySlot"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@color/btn_create_slot_bg"
+            android:text="@string/btn_create_slot"
+            android:textColor="@color/btn_create_slot" />
+
+        <ProgressBar
+            android:id="@+id/pb_slot_loading_indicator"
+            android:layout_gravity="center"
+            android:visibility="invisible"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            />
+    </LinearLayout>
+</ScrollView>
 
 
