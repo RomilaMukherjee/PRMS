@@ -12,32 +12,26 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.text.SimpleDateFormat;
 
 import sg.edu.nus.iss.phoenix.programSchedule.android.controller.MaintainScheduleController;
-import sg.edu.nus.iss.phoenix.programSchedule.android.ui.CreateWeeklyScheduleActivity;
-import sg.edu.nus.iss.phoenix.programSchedule.entity.WeeklySchedule;
+import sg.edu.nus.iss.phoenix.programSchedule.entity.ProgramSlot;
 
 import static sg.edu.nus.iss.phoenix.core.android.delegate.DelegateHelper.PRMS_BASE_URL_PROGRAM_SCHEDULE;
 
-/**
- * Created by Ragu on 24/9/2018.
- */
-
-public class CreateWeeklyScheduleDelegate extends AsyncTask<WeeklySchedule, Void, Boolean> {
+public class UpdateProgramSlotDelegate extends AsyncTask<ProgramSlot, Void, Boolean> {
 
     private final MaintainScheduleController maintainScheduleController;
-    private static final String TAG = CreateWeeklyScheduleActivity.class.getName();
-    SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 
-    public CreateWeeklyScheduleDelegate(MaintainScheduleController maintainScheduleController) {
+    private static final String TAG = UpdateProgramSlotDelegate.class.getName();
+
+    public UpdateProgramSlotDelegate(MaintainScheduleController maintainScheduleController) {
         this.maintainScheduleController = maintainScheduleController;
     }
 
     @Override
-    protected Boolean doInBackground(WeeklySchedule... weeklySchedules) {
+    protected Boolean doInBackground(ProgramSlot... programSlot) {
         Uri builtUri = Uri.parse(PRMS_BASE_URL_PROGRAM_SCHEDULE).buildUpon().build();
-        builtUri = Uri.withAppendedPath(builtUri,"create_weeklyschedule").buildUpon().build();
+        builtUri = Uri.withAppendedPath(builtUri,"updateProgramSlot").buildUpon().build();
         Log.v(TAG, builtUri.toString());
         URL url = null;
         try {
@@ -48,29 +42,29 @@ public class CreateWeeklyScheduleDelegate extends AsyncTask<WeeklySchedule, Void
         }
 
         JSONObject json = new JSONObject();
-        String startDate = sdformat.format(weeklySchedules[0].getStartDate());
-
         try {
-            json.put("startDate", startDate);
-            json.put("assignedBy", weeklySchedules[0].getAssignedBy());
+            json.put("programName", programSlot[0].getProgramName());
+            json.put("dateOfProgram", programSlot[0].getDateOfProgram());
+            json.put("time", programSlot[0].getTime());
+            json.put("startTime", programSlot[0].getStartTime());
         } catch (JSONException e) {
             Log.v(TAG, e.getMessage());
         }
-        Log.v(TAG, "JSON :" + json.toString());
+
         boolean success = false;
         HttpURLConnection httpURLConnection = null;
         DataOutputStream dos = null;
         try {
             httpURLConnection = (HttpURLConnection) url.openConnection();
             httpURLConnection.setInstanceFollowRedirects(false);
-            httpURLConnection.setRequestMethod("PUT");
+            httpURLConnection.setRequestMethod("POST");
             httpURLConnection.setRequestProperty("Content-Type", "application/json; charset=utf8");
             httpURLConnection.setDoInput(true);
             httpURLConnection.setDoOutput(true);
             dos = new DataOutputStream(httpURLConnection.getOutputStream());
             dos.writeUTF(json.toString());
-            dos.write(512);
-            Log.v(TAG, "Http PUT response " + httpURLConnection.getResponseCode());
+            dos.write(256);
+            Log.v(TAG, "Http POST response " + httpURLConnection.getResponseCode());
             success = true;
         } catch (IOException exception) {
             Log.v(TAG, exception.getMessage());
@@ -87,9 +81,9 @@ public class CreateWeeklyScheduleDelegate extends AsyncTask<WeeklySchedule, Void
         }
         return new Boolean(success);
     }
-    // private final MaintainScheduleController maintainScheduleController;
+
     @Override
     protected void onPostExecute(Boolean result) {
-        maintainScheduleController.annualScheduleCreated(result.booleanValue());
+        maintainScheduleController.programSlotUpdated(result.booleanValue());
     }
 }

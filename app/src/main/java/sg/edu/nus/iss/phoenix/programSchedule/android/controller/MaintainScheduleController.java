@@ -71,6 +71,24 @@ public class MaintainScheduleController {
         startUseCase();
     }
 
+    public void startCreateProgramSlot() {
+        Intent intent = new Intent(MainController.getApp(), CreateProgramSlotActivity.class);
+        MainController.displayScreen(intent);
+    }
+
+    public void startUpdateProgramSlot() {
+        Intent intent = new Intent(MainController.getApp(), UpdateProgramSlotActivity.class);
+        MainController.displayScreen(intent);
+    }
+
+    public void programSlotCreated(Boolean success) {
+        startUseCase();
+    }
+
+    public void programSlotUpdated(Boolean success) {startUseCase(); }
+
+    public void programSlotDeleted(Boolean success) {startUseCase(); }
+
     public void onDisplayProgramList(MaintainScheduleProgramActivity maintainScheduleProgramActivity) {
         this.maintainScheduleProgramActivity = maintainScheduleProgramActivity;
         new RetriveAnnualScheduleDelegate(this).execute("all");

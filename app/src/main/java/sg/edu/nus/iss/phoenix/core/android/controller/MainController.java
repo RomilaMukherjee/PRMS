@@ -59,4 +59,8 @@ public class MainController {
     public void selectedProgram(RadioProgram rpSelected) {
         startUseCase(username);
     }
+
+    public void selectMaintainUsers() {
+    ControlFactory.getUserController().startUseCase();
+    }
 }
