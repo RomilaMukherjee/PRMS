@@ -1,6 +1,6 @@
-package sg.edu.nus.iss.phoenix.user.android.entity;
+package sg.edu.nus.iss.phoenix.user.entity;
 
-class Role {
+public class Role {
     /**
      * For eclipse based unique identity
      */
@@ -12,4 +12,9 @@ class Role {
      */
     private String role;
     private String accessPrivilege;
+
+    public Role(String role) {
+        this.role = role;
+        this.accessPrivilege = null;
+    }
 }
