@@ -48,4 +48,10 @@ public class ControlFactory {
         if (userController == null) userController = new UserController();
         return userController;
     }
+
+    public static MaintainScheduleController getProgramSlotController() {
+        if (maintainScheduleController == null)
+            maintainScheduleController = new MaintainScheduleController();
+        return maintainScheduleController;
+    }
 }
