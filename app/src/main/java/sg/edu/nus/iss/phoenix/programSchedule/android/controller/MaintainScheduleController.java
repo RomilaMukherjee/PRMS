@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.util.Log;
 
 import java.util.List;
+
+import sg.edu.nus.iss.phoenix.ProducerListActivity;
 import sg.edu.nus.iss.phoenix.programSchedule.android.delegate.CopyProgramSlotDelegate;
 import sg.edu.nus.iss.phoenix.programSchedule.android.delegate.CreateScheduleDelegate;
 import sg.edu.nus.iss.phoenix.programSchedule.android.delegate.CreateWeeklyScheduleDelegate;
@@ -19,6 +21,8 @@ import sg.edu.nus.iss.phoenix.programSchedule.android.ui.UpdateProgramSlotActivi
 import sg.edu.nus.iss.phoenix.programSchedule.entity.AnnualSchedule;
 import sg.edu.nus.iss.phoenix.programSchedule.entity.ProgramSlot;
 import sg.edu.nus.iss.phoenix.programSchedule.entity.WeeklySchedule;
+import sg.edu.nus.iss.phoenix.user.android.delegate.RetriveProducerPresenterDelegate;
+import sg.edu.nus.iss.phoenix.user.android.entity.User;
 import sg.edu.nus.iss.phoenix.utility.ApplicationConstant;
 
 import static android.content.ContentValues.TAG;
@@ -33,6 +37,7 @@ public class MaintainScheduleController {
     private static final String TAG = MaintainScheduleController.class.getName();
     private MaintainProgramSlotActivity slotCreateScreen;
     private ProgramSlotListActivity slotListActivity;
+    private ProducerListActivity producerListActivity;
 	
 	private MaintainScheduleProgramActivity maintainScheduleProgramActivity;
 
@@ -52,6 +57,12 @@ public class MaintainScheduleController {
 
     public void startAnnualSchedule() {
         Intent intent = new Intent(MainController.getApp(), MaintainScheduleProgramActivity.class);
+        MainController.displayScreen(intent);
+    }
+
+    public void startProducerScreen(String role) {
+        Intent intent = new Intent(MainController.getApp(), ProducerListActivity.class);
+        intent.putExtra("role", role);
         MainController.displayScreen(intent);
     }
 
@@ -132,5 +143,14 @@ public class MaintainScheduleController {
     public void displayAnnualList(ProgramSlotListActivity slotListActivity){
         this.slotListActivity = slotListActivity;
         new RetriveAnnualScheduleDelegate(this).execute("all");
+    }
+
+    public void displayProducerList(ProducerListActivity producerListActivity, String role) {
+        this.producerListActivity = producerListActivity;
+        new RetriveProducerPresenterDelegate(this).execute(role);
+    }
+
+    public void usersRetrieved(List<User> producerList) {
+        producerListActivity.showProducerList(producerList);
     }
 }

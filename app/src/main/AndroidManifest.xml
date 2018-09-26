@@ -42,19 +42,23 @@
             android:label="@string/title_activity_maintain_schedule_program"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".programSchedule.android.ui.CreateScheduleActivity" />
-        <activity android:name=".programSchedule.android.ui.ProgramSlotListActivity"
+        <activity
+            android:name=".programSchedule.android.ui.ProgramSlotListActivity"
             android:label="@string/title_activity_program_slot_list" />
         <activity
             android:name=".programSchedule.android.ui.MaintainProgramSlotActivity"
             android:label="@string/title_maintain_program_slot" />
-        <activity android:name=".AnnualScheduleActivity" />
+        <activity android:name=".programSchedule.android.ui.AnnualScheduleActivity" />
         <activity android:name=".programSchedule.android.ui.CreateWeeklyScheduleActivity" />
         <!-- <activity android:name=".programSchedule.android.ui.ScheduleProgramActivity"></activity> -->
         <activity android:name=".user.android.ui.UserListScreen" />
         <activity android:name=".programSchedule.android.ui.MaintainScheduleActivity" />
         <activity android:name=".programSchedule.android.ui.CreateProgramSlotActivity" />
-        <activity android:name=".programSchedule.android.ui.UpdateProgramSlotActivity"></activity>
-
+        <activity android:name=".programSchedule.android.ui.UpdateProgramSlotActivity" />
+        <activity android:name=".programSchedule.android.ui.UpdateProgramSlotActivity" />
+        <activity android:name=".ProducerListActivity" />
+        <activity android:name=".ProducerItemActivity" />
+        <activity android:name=".PresenterListActivity"></activity>
     </application>
 
 </manifest>

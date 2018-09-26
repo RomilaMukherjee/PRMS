@@ -11,7 +11,7 @@ import sg.edu.nus.iss.phoenix.core.android.controller.ControlFactory;
 public class MaintainScheduleActivity extends AppCompatActivity {
 
     private Button annualScheduleButton;
-    private Button programSlotButton;
+    private Button programSlotButton, producerButton, presenterButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +19,8 @@ public class MaintainScheduleActivity extends AppCompatActivity {
 
         annualScheduleButton = (Button) findViewById(R.id.annaul_schedule);
         programSlotButton = (Button) findViewById(R.id.program_slot);
+        producerButton = (Button) findViewById(R.id.view_producer);
+        presenterButton = (Button) findViewById(R.id.view_presenter);
 
         annualScheduleButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -31,6 +33,20 @@ public class MaintainScheduleActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                ControlFactory.getProgramSlotController().startProgramSlot();
+            }
+        });
+
+        producerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ControlFactory.getMaintainScheduleController().startProducerScreen("producer");
+            }
+        });
+
+        presenterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ControlFactory.getMaintainScheduleController().startProducerScreen("presenter");
             }
         });
     }
