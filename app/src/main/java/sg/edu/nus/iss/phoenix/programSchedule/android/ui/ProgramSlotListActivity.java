@@ -6,13 +6,18 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import sg.edu.nus.iss.phoenix.R;
 import sg.edu.nus.iss.phoenix.core.android.controller.ControlFactory;
+import sg.edu.nus.iss.phoenix.programSchedule.android.delegate.RetriveAnnualScheduleDelegate;
+import sg.edu.nus.iss.phoenix.programSchedule.entity.AnnualSchedule;
 import sg.edu.nus.iss.phoenix.programSchedule.entity.ProgramSlot;
 
 public class ProgramSlotListActivity extends AppCompatActivity {
@@ -20,15 +25,17 @@ public class ProgramSlotListActivity extends AppCompatActivity {
     private static final String TAG = "ProgramSlotListActivity";
     SimpleDateFormat sdformat = new SimpleDateFormat("dd/MM/yyyy");
     SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
+    private List<AnnualSchedule> annualScheduleLst;
+    Spinner yearSpinner;
+    Spinner weekSpinner;
+    ArrayAdapter arrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_program_slot_list);
 
-
-
-
+        ControlFactory.getMaintainScheduleController().displayAnnualList(this);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_create_program_slot);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,5 +69,10 @@ public class ProgramSlotListActivity extends AppCompatActivity {
                 ControlFactory.getMaintainScheduleController().copyProgramSlot(slotObj);
             }
         });
+    }
+
+    public void showAnuualLst(List<AnnualSchedule> annualSchedules){
+        annualScheduleLst = annualSchedules;
+        Log.d(TAG,"List of schedules received"+annualScheduleLst);
     }
 }
