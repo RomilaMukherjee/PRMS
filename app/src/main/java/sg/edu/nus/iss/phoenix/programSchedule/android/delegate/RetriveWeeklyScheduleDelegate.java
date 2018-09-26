@@ -78,6 +78,7 @@ public class RetriveWeeklyScheduleDelegate extends AsyncTask<String, Void, Strin
                     //String description = asJson.getString("description");
                     String startDate = asJson.getString("startDate");
                     String assignedBy = asJson.getString("assignedBy");
+                    int year = asJson.getInt("year");
                     Date startDateObj = null;
                     try {
                         startDateObj = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(startDate);
@@ -85,7 +86,7 @@ public class RetriveWeeklyScheduleDelegate extends AsyncTask<String, Void, Strin
                         e.printStackTrace();
                     }
                     if(startDateObj != null)
-                    weeklySchedules.add(new WeeklySchedule(startDateObj, assignedBy));
+                    weeklySchedules.add(new WeeklySchedule(startDateObj, assignedBy, year));
                 }
                 Log.v(TAG, "Json response :" + weeklySchedules.get(0).getStartDate());
             } catch (JSONException e) {

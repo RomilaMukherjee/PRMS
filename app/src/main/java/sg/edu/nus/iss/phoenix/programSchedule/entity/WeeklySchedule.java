@@ -9,16 +9,16 @@ import java.util.Date;
 public class WeeklySchedule {
     private Date startDate;
     private String assignedBy;
-    //private int year;
+    private int year;
 
     public WeeklySchedule() {
 
     }
 
-    public WeeklySchedule(Date startDate, String assignedBy) {
+    public WeeklySchedule(Date startDate, String assignedBy, int year) {
         this.startDate = startDate;
         this.assignedBy = assignedBy;
-        //this.year = year;
+        this.year = year;
     }
 
     public Date getStartDate() {
@@ -37,11 +37,11 @@ public class WeeklySchedule {
         this.assignedBy = assignedBy;
     }
 
-    /*public int getYear() {
+    public int getYear() {
         return year;
     }
 
     public void setYear(int year) {
         this.year = year;
-    }*/
+    }
 }

@@ -82,7 +82,7 @@ public class CreateWeeklyScheduleActivity extends AppCompatActivity {
                     }
                     if(startDate != null) {
                         //Log.v(TAG, "Start date :" + startDate.toString());
-                        WeeklySchedule weeklySchedule = new WeeklySchedule(startDate, sharedPreferences.getString("username", "No Name found"));
+                        WeeklySchedule weeklySchedule = new WeeklySchedule(startDate, sharedPreferences.getString("username", "No Name found"), annualSchedule.getYear());
                         ControlFactory.getMaintainScheduleController().selectCreateWeeklySchedule(weeklySchedule);
                     }
                     else {

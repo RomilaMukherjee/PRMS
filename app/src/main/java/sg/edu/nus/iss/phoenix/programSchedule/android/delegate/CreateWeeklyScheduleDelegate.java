@@ -53,6 +53,7 @@ public class CreateWeeklyScheduleDelegate extends AsyncTask<WeeklySchedule, Void
         try {
             json.put("startDate", startDate);
             json.put("assignedBy", weeklySchedules[0].getAssignedBy());
+            json.put("year", weeklySchedules[0].getYear());
         } catch (JSONException e) {
             Log.v(TAG, e.getMessage());
         }
