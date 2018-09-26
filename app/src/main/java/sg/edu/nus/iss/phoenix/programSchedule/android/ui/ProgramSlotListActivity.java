@@ -1,78 +1,115 @@
 package sg.edu.nus.iss.phoenix.programSchedule.android.ui;
 
+import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import sg.edu.nus.iss.phoenix.R;
 import sg.edu.nus.iss.phoenix.core.android.controller.ControlFactory;
-import sg.edu.nus.iss.phoenix.programSchedule.android.delegate.RetriveAnnualScheduleDelegate;
 import sg.edu.nus.iss.phoenix.programSchedule.entity.AnnualSchedule;
 import sg.edu.nus.iss.phoenix.programSchedule.entity.ProgramSlot;
 
 public class ProgramSlotListActivity extends AppCompatActivity {
 
     private static final String TAG = "ProgramSlotListActivity";
-    SimpleDateFormat sdformat = new SimpleDateFormat("dd/MM/yyyy");
+    SimpleDateFormat sdformat   = new SimpleDateFormat("dd/MM/yyyy");
     SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
     private List<AnnualSchedule> annualScheduleLst;
+    List<String> yearLst = new ArrayList<String>();
     Spinner yearSpinner;
     Spinner weekSpinner;
     ArrayAdapter arrayAdapter;
+    private ListView annualScheduleList;
+    private ListView slotList;
+    private ProgramSlotAdapter slotAdapter;
+    private ListView programSlotList;
+    private ArrayList<ProgramSlot> programSlot;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_program_slot_list);
+        yearSpinner = (Spinner) findViewById(R.id.yearSpinner);
 
-        ControlFactory.getMaintainScheduleController().displayAnnualList(this);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_create_program_slot);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               /**Create program Slot dummy object to copy and persist data**/
-                ProgramSlot slotObj = new ProgramSlot();
+        programSlotList = (ListView) findViewById(R.id.radio_slot_list);
+        programSlot = new ArrayList<ProgramSlot>();
+        slotAdapter = new ProgramSlotAdapter(this, programSlot);
+        programSlotList.setAdapter(slotAdapter);
 
-                int annualYear=2018;
-                String programName="charity";
-                String dateInStr = "22/09/2018";
-                String timeInStr = "06:30:00";
-                String weekDateInStr = "17/09/2018";
-                String progDuration = "00:30:00";
-                String producer = "dogbert";
-                String presenter = "dilbert";
-                try{
-                    Date programStartDate = sdformat.parse(dateInStr);
-                    Date programStartTime = timeFormat.parse(timeInStr);
-                    Date weekStartDate = sdformat.parse(weekDateInStr);
-                    slotObj.setAnnualYear(annualYear);
-                    slotObj.setProgramName(programName);
-                    slotObj.setDateOfProgram(programStartDate);
-                    slotObj.setStartTime(programStartTime);
-                    slotObj.setWeekStartDate(weekStartDate);
-                    slotObj.setTime(progDuration);
-                    slotObj.setProducerName(producer);
-                    slotObj.setPresenterName(presenter);
-                }catch(ParseException exceptObj){
-                   Log.e(TAG,"Error while parsing");
+        if(annualScheduleList!=null) {
+            annualScheduleList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                @Override
+                public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long l) {
+                    ProgramSlot programSlot = (ProgramSlot) adapterView.getItemAtPosition(position);
+                    Intent intent = new Intent(ProgramSlotListActivity.this, MaintainProgramSlotActivity.class);
+                    intent.putExtra("ProgramSlot", programSlot);
+                    startActivity(intent);
+                    return true;
                 }
-                ControlFactory.getMaintainScheduleController().copyProgramSlot(slotObj);
-            }
-        });
+            });
+
+
+            FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_create_program_slot);
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    /**Create program Slot dummy object to copy and persist data**/
+                    int annualYear = 2018;
+                    String programName = "charity";
+                    String dateInStr = "22/09/2018";
+                    String timeInStr = "06:30:00";
+                    String weekDateInStr = "17/09/2018";
+                    String progDuration = "00:30:00";
+                    String producer = "dogbert";
+                    String presenter = "dilbert";
+
+                    ProgramSlot slotObj = new ProgramSlot(programName, dateInStr, timeInStr, progDuration);
+                    ControlFactory.getMaintainScheduleController().copyProgramSlot(slotObj);
+                }
+            });
+        }
     }
 
-    public void showAnuualLst(List<AnnualSchedule> annualSchedules){
-        annualScheduleLst = annualSchedules;
-        Log.d(TAG,"List of schedules received"+annualScheduleLst);
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+       // ControlFactory.getMaintainScheduleController().displayAnnualList(this);
+        ControlFactory.getMaintainScheduleController().displaySlotList(this);
     }
+
+    /**
+     * API to populate the Spinner
+     * for Annual Year
+     * @param annualSchedules
+     */
+    public void showAnnualLst(List<AnnualSchedule> annualSchedules){
+        annualScheduleLst = annualSchedules;
+
+        for(AnnualSchedule year : annualScheduleLst){
+            yearLst.add(String.valueOf(year.getYear()));
+        }
+        ArrayAdapter adapterForAnnualSchedule = new ArrayAdapter(this, android.R.layout.simple_spinner_item,yearLst );
+        adapterForAnnualSchedule.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        yearSpinner.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
+        yearSpinner.setAdapter(adapterForAnnualSchedule);
+        Log.d(TAG,"List of schedules received :: size"+yearLst.size());
+    }
+
+    public void showSlotList(List<ProgramSlot> programSlot){
+        programSlot = programSlot;
+    }
+
 }
