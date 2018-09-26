@@ -3,7 +3,9 @@ package sg.edu.nus.iss.phoenix.programSchedule.android.ui;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -56,8 +58,19 @@ public class CreateScheduleActivity extends AppCompatActivity {
         createSchedule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AnnualSchedule annualSchedule = new AnnualSchedule(Integer.parseInt(annualScheduleyear.getText().toString()), sharedPreferences.getString("username", "No Name found"));
-                ControlFactory.getMaintainScheduleController().selectCreateSchedule(annualSchedule);
+                if(!annualScheduleyear.getText().toString().isEmpty() && annualScheduleyear.getText().toString().length() == 4) {
+
+                    Intent intent = new Intent(CreateScheduleActivity.this, CreateWeeklyScheduleActivity.class);
+                    intent.putExtra("AnnualSchedule", Integer.parseInt(annualScheduleyear.getText().toString()));
+                    startActivity(intent);
+
+                   /* AnnualSchedule annualSchedule = new AnnualSchedule(Integer.parseInt(annualScheduleyear.getText().toString()), sharedPreferences.getString("username", "No Name found"));
+                    ControlFactory.getMaintainScheduleController().selectCreateSchedule(annualSchedule);*/
+                }
+                else {
+                    Snackbar.make(view, "Select year", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
             }
         });
     }

@@ -10,13 +10,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Annual Schedule"
+        android:textSize="20dp"
         android:id="@+id/annaul_schedule"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/program_slot"
         android:text="Program Slot"
+        android:textSize="20dp"
         android:layout_below="@+id/annaul_schedule"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/view_producer"
+        android:text="Producers"
+        android:textSize="20dp"
+        android:layout_below="@+id/program_slot"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/view_presenter"
+        android:text="Presenters"
+        android:textSize="20dp"
+        android:layout_below="@+id/view_producer"/>
 
 
 </RelativeLayout>
