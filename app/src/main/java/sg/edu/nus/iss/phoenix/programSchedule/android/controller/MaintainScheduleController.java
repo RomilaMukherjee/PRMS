@@ -14,6 +14,8 @@ import sg.edu.nus.iss.phoenix.programSchedule.android.ui.MaintainProgramSlotActi
 import sg.edu.nus.iss.phoenix.programSchedule.android.ui.MaintainScheduleProgramActivity;
 import sg.edu.nus.iss.phoenix.programSchedule.android.ui.MaintainScheduleActivity;
 import sg.edu.nus.iss.phoenix.programSchedule.android.ui.ProgramSlotListActivity;
+import sg.edu.nus.iss.phoenix.programSchedule.android.ui.CreateProgramSlotActivity;
+import sg.edu.nus.iss.phoenix.programSchedule.android.ui.UpdateProgramSlotActivity;
 import sg.edu.nus.iss.phoenix.programSchedule.entity.AnnualSchedule;
 import sg.edu.nus.iss.phoenix.programSchedule.entity.ProgramSlot;
 import sg.edu.nus.iss.phoenix.programSchedule.entity.WeeklySchedule;
@@ -30,6 +32,7 @@ public class MaintainScheduleController {
     // Tag for logging.
     private static final String TAG = MaintainScheduleController.class.getName();
     private MaintainProgramSlotActivity slotCreateScreen;
+    private ProgramSlotListActivity slotListActivity;
 	
 	private MaintainScheduleProgramActivity maintainScheduleProgramActivity;
 
@@ -53,7 +56,15 @@ public class MaintainScheduleController {
     }
 
     public void programsRetrieved(List<AnnualSchedule> annualSchedules) {
-        maintainScheduleProgramActivity.showPrograms(annualSchedules);
+        Log.d(TAG,"Object of slot list activity"+slotListActivity);
+        Log.d(TAG,"Object of maintainScheduleProgramActivity list activity"+maintainScheduleProgramActivity);
+
+        if(maintainScheduleProgramActivity!=null) {
+            maintainScheduleProgramActivity.showPrograms(annualSchedules);
+        }
+        if(slotListActivity!=null){
+            slotListActivity.showAnuualLst(annualSchedules);
+        }
     }
 
     public void annualScheduleCreated(Boolean success) {
@@ -96,4 +107,12 @@ public class MaintainScheduleController {
         new CopyProgramSlotDelegate(this).execute(slotObj);
     }
 
+    /**
+     * API to fetch annual list
+     * @param
+     */
+    public void displayAnnualList(ProgramSlotListActivity slotListActivity){
+        this.slotListActivity = slotListActivity;
+        new RetriveAnnualScheduleDelegate(this).execute("all");
+    }
 }
