@@ -87,6 +87,6 @@ public class CreateScheduleDelegate extends AsyncTask<AnnualSchedule, Void, Bool
 
     @Override
     protected void onPostExecute(Boolean result) {
-        maintainScheduleController.annualScheduleCreated(result.booleanValue());
+        //maintainScheduleController.annualScheduleCreated(result.booleanValue());
     }
 }

@@ -3,6 +3,7 @@ package sg.edu.nus.iss.phoenix;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ public class ProducerListActivity extends AppCompatActivity {
     private ListView producerListView;
     private ProducerScreenAdapter producerScreenAdapter;
     private String role;
+    private static final String TAG = ProducerListActivity.class.getName();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +44,7 @@ public class ProducerListActivity extends AppCompatActivity {
     public void showProducerList(List<User> producerList) {
         producerScreenAdapter.clear();
         for (int i = 0; i < producerList.size(); i++) {
+            Log.v(TAG, "producerList :" + producerList.get(i).getName());
             producerScreenAdapter.add(producerList.get(i));
         }
     }

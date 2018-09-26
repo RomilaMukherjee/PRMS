@@ -73,13 +73,13 @@ public class RetriveProducerPresenterDelegate extends AsyncTask<String, Void, St
 
         if (result != null && !result.equals("")) {
             try {
-                JSONObject reader = new JSONObject(result);
-                Log.v(TAG, reader.toString());
-                JSONArray rpArray = reader.getJSONArray("userList");
-                
-                for (int i = 0; i < rpArray.length(); i++) {
+                //JSONObject reader = new JSONObject(result);
+                Log.v(TAG, result.toString());
+                //JSONArray rpArray = reader.getJSONArray("userList");
+                JSONArray uArray = new JSONArray(result);
+                for (int i = 0; i < uArray.length(); i++) {
                     //rpArray.getJSONObject(i).remove("roles");
-                    JSONObject asJson = rpArray.getJSONObject(i);
+                    JSONObject asJson = uArray.getJSONObject(i);
                     //String description = asJson.getString("description");
                     String userId = asJson.getString("id");
                     String userName = asJson.getString("name");
@@ -93,8 +93,9 @@ public class RetriveProducerPresenterDelegate extends AsyncTask<String, Void, St
         } else {
             Log.v(TAG, "JSON response error.");
         }
-
+        Log.v(TAG, "RetriveProducerPresenterDelegate :" + userList.get(0).getName());
         if (maintainScheduleController != null)
+            Log.v(TAG, "inside if"+maintainScheduleController);
             maintainScheduleController.usersRetrieved(userList);
     }
 }
