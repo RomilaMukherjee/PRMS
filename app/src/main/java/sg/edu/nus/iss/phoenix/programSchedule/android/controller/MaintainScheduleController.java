@@ -9,6 +9,7 @@ import sg.edu.nus.iss.phoenix.ProducerListActivity;
 import sg.edu.nus.iss.phoenix.programSchedule.android.delegate.CopyProgramSlotDelegate;
 import sg.edu.nus.iss.phoenix.programSchedule.android.delegate.CreateScheduleDelegate;
 import sg.edu.nus.iss.phoenix.programSchedule.android.delegate.CreateWeeklyScheduleDelegate;
+import sg.edu.nus.iss.phoenix.programSchedule.android.delegate.RetrieveProgramSlotDelegate;
 import sg.edu.nus.iss.phoenix.programSchedule.android.delegate.RetriveAnnualScheduleDelegate;
 import sg.edu.nus.iss.phoenix.programSchedule.android.ui.CreateScheduleActivity;
 import sg.edu.nus.iss.phoenix.core.android.controller.MainController;
@@ -152,5 +153,21 @@ public class MaintainScheduleController {
 
     public void usersRetrieved(List<User> producerList) {
         producerListActivity.showProducerList(producerList);
+    }
+
+
+    /**
+     * API to fetch annual list
+     * @param
+     */
+    public void displaySlotList(ProgramSlotListActivity slotListActivity){
+        this.slotListActivity = slotListActivity;
+        new RetrieveProgramSlotDelegate(this).execute("2018-08-26 00:00:00");
+    }
+
+    public void programSlotRetrieved(List<ProgramSlot> programSlotList){
+        if(slotListActivity!=null) {
+            slotListActivity.showSlotList(programSlotList);
+        }
     }
 }
