@@ -74,7 +74,7 @@ public class MaintainScheduleController {
             maintainScheduleProgramActivity.showPrograms(annualSchedules);
         }
         if(slotListActivity!=null){
-            slotListActivity.showAnuualLst(annualSchedules);
+            slotListActivity.showAnnualLst(annualSchedules);
         }
     }
 

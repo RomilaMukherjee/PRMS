@@ -19,21 +19,17 @@ import java.util.List;
 import java.util.Scanner;
 
 import sg.edu.nus.iss.phoenix.programSchedule.android.controller.MaintainScheduleController;
-import sg.edu.nus.iss.phoenix.programSchedule.entity.AnnualSchedule;
 import sg.edu.nus.iss.phoenix.programSchedule.entity.ProgramSlot;
-import sg.edu.nus.iss.phoenix.radioprogram.android.delegate.RetrieveProgramsDelegate;
-import sg.edu.nus.iss.phoenix.radioprogram.entity.RadioProgram;
-
-import static android.content.ContentValues.TAG;
 import static sg.edu.nus.iss.phoenix.core.android.delegate.DelegateHelper.PRMS_BASE_URL_PROGRAM_SCHEDULE;
 
+
 /**
- * Created by Ragu on 24/9/2018.
+ * Created by Romila on 26/9/2018.
  */
 
 public class RetrieveProgramSlotDelegate extends AsyncTask<String, Void, String>{
     private MaintainScheduleController maintainScheduleController = null;
-    private static final String TAG = RetriveAnnualScheduleDelegate.class.getName();
+    private static final String TAG = RetrieveProgramSlotDelegate.class.getName();
 
     public RetrieveProgramSlotDelegate(MaintainScheduleController maintainScheduleController) {
         this.maintainScheduleController = maintainScheduleController;
@@ -41,8 +37,10 @@ public class RetrieveProgramSlotDelegate extends AsyncTask<String, Void, String>
 
     @Override
     protected String doInBackground(String... params) {
-        Uri builtUri1 = Uri.parse( PRMS_BASE_URL_PROGRAM_SCHEDULE).buildUpon().build();
-        Uri builtUri = Uri.withAppendedPath(builtUri1, params[0]).buildUpon().build();
+        Uri builtUri = Uri.parse( PRMS_BASE_URL_PROGRAM_SCHEDULE).buildUpon().build();
+        builtUri.withAppendedPath(builtUri,"all_programslots").buildUpon().build();
+        //builtUri.withAppendedPath(builtUri, params[0]).buildUpon().build();
+
         Log.v(TAG, builtUri.toString());
         URL url = null;
         try {
@@ -98,7 +96,7 @@ public class RetrieveProgramSlotDelegate extends AsyncTask<String, Void, String>
             Log.v(TAG, "JSON response error.");
         }
 
-     //   if (maintainScheduleController != null)
-       //     maintainScheduleController.programsRetrieved(programSlotList);
+        if (maintainScheduleController != null)
+            maintainScheduleController.programSlotRetrieved(programSlotList);
     }
 }

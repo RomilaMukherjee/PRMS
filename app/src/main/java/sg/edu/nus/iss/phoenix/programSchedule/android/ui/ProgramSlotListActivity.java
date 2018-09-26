@@ -35,8 +35,8 @@ public class ProgramSlotListActivity extends AppCompatActivity {
     private ListView annualScheduleList;
     private ListView slotList;
     private ProgramSlotAdapter slotAdapter;
-    private ListView programSlotList;
-    private ArrayList<ProgramSlot> programSlot;
+    private ListView programSlotListView;
+    private ArrayList<ProgramSlot> programSlotLst;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +44,10 @@ public class ProgramSlotListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_program_slot_list);
         yearSpinner = (Spinner) findViewById(R.id.yearSpinner);
 
-        programSlotList = (ListView) findViewById(R.id.radio_slot_list);
-        programSlot = new ArrayList<ProgramSlot>();
-        slotAdapter = new ProgramSlotAdapter(this, programSlot);
-        programSlotList.setAdapter(slotAdapter);
+        programSlotListView = (ListView) findViewById(R.id.radio_slot_list);
+        programSlotLst = new ArrayList<ProgramSlot>();
+        slotAdapter = new ProgramSlotAdapter(this, programSlotLst);
+        programSlotListView.setAdapter(slotAdapter);
 
         if(annualScheduleList!=null) {
             annualScheduleList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -86,8 +86,10 @@ public class ProgramSlotListActivity extends AppCompatActivity {
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-       // ControlFactory.getMaintainScheduleController().displayAnnualList(this);
+        ControlFactory.getMaintainScheduleController().displayAnnualList(this);
         ControlFactory.getMaintainScheduleController().displaySlotList(this);
+        programSlotListView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        programSlotListView.setSelection(0);
     }
 
     /**
@@ -101,15 +103,19 @@ public class ProgramSlotListActivity extends AppCompatActivity {
         for(AnnualSchedule year : annualScheduleLst){
             yearLst.add(String.valueOf(year.getYear()));
         }
-        ArrayAdapter adapterForAnnualSchedule = new ArrayAdapter(this, android.R.layout.simple_spinner_item,yearLst );
+       /* ArrayAdapter adapterForAnnualSchedule = new ArrayAdapter(this, android.R.layout.simple_spinner_item,yearLst );
         adapterForAnnualSchedule.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         yearSpinner.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
         yearSpinner.setAdapter(adapterForAnnualSchedule);
-        Log.d(TAG,"List of schedules received :: size"+yearLst.size());
+        Log.d(TAG,"List of schedules received :: size"+yearLst.size());*/
     }
 
-    public void showSlotList(List<ProgramSlot> programSlot){
-        programSlot = programSlot;
+    public void showSlotList(List<ProgramSlot> programSlots){
+        slotAdapter.clear();
+        Log.v(TAG, "List of Slots is :" + programSlots.isEmpty());
+        for (int i = 0; i < programSlots.size(); i++) {
+            slotAdapter.add(programSlots.get(i));
+        }
     }
 
 }
