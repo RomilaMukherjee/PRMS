@@ -10,14 +10,20 @@ import java.util.Date;
 public class ProgramSlot implements Serializable {
 
     private String programName;
-    private Date dateOfProgram;
-    private Date startTime;
+    private String dateOfProgram;
+    private String startTime;
     private String time;
     private int annualYear;
-    private Date weekStartDate;
+    private String weekStartDate;
     private String producerName;
     private String presenterName;
 
+    public ProgramSlot(String programName, String dateOfProgram, String startTime,String time) {
+        this.producerName = programName;
+        this.dateOfProgram = dateOfProgram;
+        this.startTime = startTime;
+        this.time =time;
+    }
 
     public String getProgramName() {
         return programName;
@@ -27,19 +33,19 @@ public class ProgramSlot implements Serializable {
         this.programName = programName;
     }
 
-    public Date getDateOfProgram() {
+    public String getDateOfProgram() {
         return dateOfProgram;
     }
 
-    public void setDateOfProgram(Date dateOfProgram) {
+    public void setDateOfProgram(String dateOfProgram) {
         this.dateOfProgram = dateOfProgram;
     }
 
-    public Date getStartTime() {
+    public String getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Date startTime) {
+    public void setStartTime(String startTime) {
         this.startTime = startTime;
     }
 
@@ -55,9 +61,9 @@ public class ProgramSlot implements Serializable {
 
     public void setAnnualYear(int annualYear) { this.annualYear = annualYear;}
 
-    public Date getWeekStartDate() {return weekStartDate;}
+    public String getWeekStartDate() {return weekStartDate;}
 
-    public void setWeekStartDate(Date weekStartDate) {this.weekStartDate = weekStartDate;}
+    public void setWeekStartDate(String weekStartDate) {this.weekStartDate = weekStartDate;}
 
     public String getProducerName() {return producerName;}
 
