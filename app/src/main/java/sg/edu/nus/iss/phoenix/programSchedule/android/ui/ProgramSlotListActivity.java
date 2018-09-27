@@ -8,49 +8,33 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Spinner;
-import android.widget.Toast;
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-
 import sg.edu.nus.iss.phoenix.R;
 import sg.edu.nus.iss.phoenix.core.android.controller.ControlFactory;
-import sg.edu.nus.iss.phoenix.programSchedule.entity.AnnualSchedule;
 import sg.edu.nus.iss.phoenix.programSchedule.entity.ProgramSlot;
 
 public class ProgramSlotListActivity extends AppCompatActivity {
 
     private static final String TAG = "ProgramSlotListActivity";
-    SimpleDateFormat sdformat   = new SimpleDateFormat("dd/MM/yyyy");
-    SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
-    private List<AnnualSchedule> annualScheduleLst;
-    List<String> yearLst = new ArrayList<String>();
-    Spinner yearSpinner;
-    Spinner weekSpinner;
-    ArrayAdapter arrayAdapter;
-    private ListView annualScheduleList;
     private ListView slotList;
     private ProgramSlotAdapter slotAdapter;
     private ListView programSlotListView;
-    private ArrayList<ProgramSlot> programSlotLst;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_program_slot_list);
-        yearSpinner = (Spinner) findViewById(R.id.yearSpinner);
-
         programSlotListView = (ListView) findViewById(R.id.radio_slot_list);
-        programSlotLst = new ArrayList<ProgramSlot>();
+        ArrayList<ProgramSlot> programSlotLst = new ArrayList<ProgramSlot>();
         slotAdapter = new ProgramSlotAdapter(this, programSlotLst);
         programSlotListView.setAdapter(slotAdapter);
 
-        if(annualScheduleList!=null) {
-            annualScheduleList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        if(programSlotListView!=null) {
+            Log.d(TAG,"Inside programSlotListView when not null");
+            programSlotListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                 @Override
                 public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long l) {
                     ProgramSlot programSlot = (ProgramSlot) adapterView.getItemAtPosition(position);
@@ -86,34 +70,16 @@ public class ProgramSlotListActivity extends AppCompatActivity {
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        ControlFactory.getMaintainScheduleController().displayAnnualList(this);
         ControlFactory.getMaintainScheduleController().displaySlotList(this);
         programSlotListView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         programSlotListView.setSelection(0);
     }
 
-    /**
-     * API to populate the Spinner
-     * for Annual Year
-     * @param annualSchedules
-     */
-    public void showAnnualLst(List<AnnualSchedule> annualSchedules){
-        annualScheduleLst = annualSchedules;
-
-        for(AnnualSchedule year : annualScheduleLst){
-            yearLst.add(String.valueOf(year.getYear()));
-        }
-       /* ArrayAdapter adapterForAnnualSchedule = new ArrayAdapter(this, android.R.layout.simple_spinner_item,yearLst );
-        adapterForAnnualSchedule.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        yearSpinner.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
-        yearSpinner.setAdapter(adapterForAnnualSchedule);
-        Log.d(TAG,"List of schedules received :: size"+yearLst.size());*/
-    }
-
     public void showSlotList(List<ProgramSlot> programSlots){
         slotAdapter.clear();
-        Log.v(TAG, "List of Slots is :" + programSlots.isEmpty());
+        Log.v(TAG, "List of Slots is :" + programSlots.size());
         for (int i = 0; i < programSlots.size(); i++) {
+            Log.d(TAG,"Indise program slot.."+programSlots.get(i).getProgramName());
             slotAdapter.add(programSlots.get(i));
         }
     }
