@@ -3,6 +3,7 @@ package sg.edu.nus.iss.phoenix.programSchedule.android.controller;
 import android.content.Intent;
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import sg.edu.nus.iss.phoenix.ProducerListActivity;
@@ -73,9 +74,6 @@ public class MaintainScheduleController {
 
         if(maintainScheduleProgramActivity!=null) {
             maintainScheduleProgramActivity.showPrograms(annualSchedules);
-        }
-        if(slotListActivity!=null){
-            slotListActivity.showAnnualLst(annualSchedules);
         }
     }
 
@@ -167,7 +165,7 @@ public class MaintainScheduleController {
 
     public void programSlotRetrieved(List<ProgramSlot> programSlotList){
         if(slotListActivity!=null) {
-            slotListActivity.showSlotList(programSlotList);
+           slotListActivity.showSlotList(programSlotList);
         }
     }
 }
