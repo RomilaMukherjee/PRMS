@@ -6,13 +6,6 @@
     xmlns:andriod="http://schemas.android.com/apk/res-auto"
     tools:context="sg.edu.nus.iss.phoenix.programSchedule.android.ui.ProgramSlotListActivity">
 
-    <Spinner
-        android:id="@+id/yearSpinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-
-
     <ListView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
