@@ -27,7 +27,8 @@ public class ProgramSlotAdapter extends ArrayAdapter<ProgramSlot> {
     public ProgramSlotAdapter(@NonNull Context context, ArrayList<ProgramSlot> programSlots) {
         super(context, 0, programSlots);
     }
-
+    @NonNull
+    @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View listItemView = convertView;
         if (listItemView == null) {
