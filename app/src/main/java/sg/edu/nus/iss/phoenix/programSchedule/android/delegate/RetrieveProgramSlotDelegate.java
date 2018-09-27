@@ -96,7 +96,11 @@ public class RetrieveProgramSlotDelegate extends AsyncTask<String, Void, String>
             Log.v(TAG, "JSON response error.");
         }
 
-        if (maintainScheduleController != null)
+        if (maintainScheduleController != null) {
+            programSlotList = new ArrayList<ProgramSlot>();
+            ProgramSlot slot = new ProgramSlot("charity","2018-08-26 00:00:00","2018-08-26 12:00:00","00:30:00");
+            programSlotList.add(slot);
             maintainScheduleController.programSlotRetrieved(programSlotList);
+        }
     }
 }
