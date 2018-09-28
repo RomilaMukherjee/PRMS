@@ -48,7 +48,7 @@ public class MaintainScheduleProgramActivity extends AppCompatActivity {
                 AnnualSchedule annualSchedule = (AnnualSchedule) adapterView.getItemAtPosition(position);
                 //annualSchedule = (AnnualSchedule) intent.getSerializableExtra("AnnualSchedule");
                 Intent intent = new Intent(MaintainScheduleProgramActivity.this, CreateWeeklyScheduleActivity.class);
-                intent.putExtra("AnnualSchedule", annualSchedule);
+                intent.putExtra("AnnualSchedule", annualSchedule.getYear());
                 startActivity(intent);
                 return true;
             }
