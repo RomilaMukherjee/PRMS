@@ -41,7 +41,7 @@ public class ProgramSlotListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                /**Create program Slot dummy object to copy and persist data**/
-                ProgramSlot slotObj = new ProgramSlot();
+                //ProgramSlot slotObj = new ProgramSlot();
 
                 int annualYear=2018;
                 String programName="charity";
@@ -55,18 +55,18 @@ public class ProgramSlotListActivity extends AppCompatActivity {
                     Date programStartDate = sdformat.parse(dateInStr);
                     Date programStartTime = timeFormat.parse(timeInStr);
                     Date weekStartDate = sdformat.parse(weekDateInStr);
-                    slotObj.setAnnualYear(annualYear);
-                    slotObj.setProgramName(programName);
-                    slotObj.setDateOfProgram(programStartDate);
-                    slotObj.setStartTime(programStartTime);
-                    slotObj.setWeekStartDate(weekStartDate);
-                    slotObj.setTime(progDuration);
-                    slotObj.setProducerName(producer);
-                    slotObj.setPresenterName(presenter);
+                    //slotObj.setAnnualYear(annualYear);
+                    //slotObj.setProgramName(programName);
+                    //slotObj.setDateOfProgram(programStartDate);
+                    //slotObj.setStartTime(programStartTime);
+                    //slotObj.setWeekStartDate(weekStartDate);
+                   // slotObj.setTime(progDuration);
+                    //slotObj.setProducerName(producer);
+                   // slotObj.setPresenterName(presenter);
                 }catch(ParseException exceptObj){
                    Log.e(TAG,"Error while parsing");
                 }
-                ControlFactory.getMaintainScheduleController().copyProgramSlot(slotObj);
+                //ControlFactory.getMaintainScheduleController().copyProgramSlot(slotObj);
             }
         });
     }

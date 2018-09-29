@@ -1,10 +1,14 @@
 package sg.edu.nus.iss.phoenix.user.android.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -19,14 +23,20 @@ public class UserListScreen extends AppCompatActivity {
     private ListView mListView;
     private User selectedUser = null;
     private UserAdapter mUAdapter;
+    private FloatingActionButton createAUserButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_userlist);
         ArrayList<User> users = new ArrayList<User>();
         mUAdapter = new UserAdapter(this, users);
+
         mListView = (ListView) findViewById(R.id.user_list);
+        createAUserButton = (FloatingActionButton)findViewById(R.id.fab);
+
         mListView.setAdapter(mUAdapter);
+
         // Setup the item selection listener
         mListView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -36,9 +46,21 @@ public class UserListScreen extends AppCompatActivity {
                 // Log.v(TAG, "Radio program name is " + rp.getRadioProgramName());
                 selectedUser = user;
             }
+
+
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
                 // your stuff
+            }
+        });
+
+        //Setup button's listener
+        createAUserButton.setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v){
+
+                Intent goToCreateUser = new Intent(UserListScreen.this,CreateUserScreen.class);
+                startActivity(goToCreateUser);
             }
         });
     }
@@ -50,6 +72,7 @@ public class UserListScreen extends AppCompatActivity {
 
         ControlFactory.getUserController().onDisplayUserList(this);
     }
+
 
     public void showUsers(List<User> users) {
         mUAdapter.clear();
