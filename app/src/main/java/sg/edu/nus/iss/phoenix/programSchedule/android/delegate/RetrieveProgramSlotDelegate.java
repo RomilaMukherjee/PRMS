@@ -19,21 +19,17 @@ import java.util.List;
 import java.util.Scanner;
 
 import sg.edu.nus.iss.phoenix.programSchedule.android.controller.MaintainScheduleController;
-import sg.edu.nus.iss.phoenix.programSchedule.entity.AnnualSchedule;
 import sg.edu.nus.iss.phoenix.programSchedule.entity.ProgramSlot;
-import sg.edu.nus.iss.phoenix.radioprogram.android.delegate.RetrieveProgramsDelegate;
-import sg.edu.nus.iss.phoenix.radioprogram.entity.RadioProgram;
-
-import static android.content.ContentValues.TAG;
 import static sg.edu.nus.iss.phoenix.core.android.delegate.DelegateHelper.PRMS_BASE_URL_PROGRAM_SCHEDULE;
 
+
 /**
- * Created by Ragu on 24/9/2018.
+ * Created by Romila on 26/9/2018.
  */
 
-public class RetrieveProgramSlotDelegate extends AsyncTask<String, Void, String>{
+public class RetrieveProgramSlotDelegate extends AsyncTask<String, Void, String> {
     private MaintainScheduleController maintainScheduleController = null;
-    private static final String TAG = RetriveAnnualScheduleDelegate.class.getName();
+    private static final String TAG = RetrieveProgramSlotDelegate.class.getName();
 
     public RetrieveProgramSlotDelegate(MaintainScheduleController maintainScheduleController) {
         this.maintainScheduleController = maintainScheduleController;
@@ -41,8 +37,10 @@ public class RetrieveProgramSlotDelegate extends AsyncTask<String, Void, String>
 
     @Override
     protected String doInBackground(String... params) {
-        Uri builtUri1 = Uri.parse( PRMS_BASE_URL_PROGRAM_SCHEDULE).buildUpon().build();
-        Uri builtUri = Uri.withAppendedPath(builtUri1, params[0]).buildUpon().build();
+        Uri builtUri1 = Uri.parse(PRMS_BASE_URL_PROGRAM_SCHEDULE).buildUpon().build();
+        Uri builtUri = Uri.withAppendedPath(builtUri1, "all_programslots").buildUpon().build();
+        //builtUri.withAppendedPath(builtUri, params[0]).buildUpon().build();
+
         Log.v(TAG, builtUri.toString());
         URL url = null;
         try {
@@ -78,7 +76,7 @@ public class RetrieveProgramSlotDelegate extends AsyncTask<String, Void, String>
             try {
                 JSONObject reader = new JSONObject(result);
                 Log.v(TAG, reader.toString());
-                JSONArray psArray = reader.getJSONArray("PSList");
+                JSONArray psArray = reader.getJSONArray("slotList");
 
                 for (int i = 0; i < psArray.length(); i++) {
                     JSONObject asJson = psArray.getJSONObject(i);
@@ -86,9 +84,9 @@ public class RetrieveProgramSlotDelegate extends AsyncTask<String, Void, String>
                     String startTime = asJson.getString("startTime");
                     String slotName = asJson.getString("programSlotName");
                     String duration = asJson.getString("duration");
-                    String dateofProgram = asJson.getString("dateofDuration");
+                    String dateofProgram = asJson.getString("dateofProgram");
 
-                    programSlotList.add(new ProgramSlot(slotName, dateofProgram,startTime,duration));
+                    programSlotList.add(new ProgramSlot(slotName, dateofProgram, startTime, duration));
                 }
                 Log.v(TAG, "Json response :" + programSlotList.get(0).getDateOfProgram());
             } catch (JSONException e) {
@@ -98,7 +96,11 @@ public class RetrieveProgramSlotDelegate extends AsyncTask<String, Void, String>
             Log.v(TAG, "JSON response error.");
         }
 
-     //   if (maintainScheduleController != null)
-       //     maintainScheduleController.programsRetrieved(programSlotList);
+        if (maintainScheduleController != null) {
+            programSlotList = new ArrayList<ProgramSlot>();
+            ProgramSlot slot = new ProgramSlot("charity","2018-08-26 00:00:00","2018-08-26 12:00:00","00:30:00");
+            programSlotList.add(slot);
+            maintainScheduleController.programSlotRetrieved(programSlotList);
+        }
     }
 }

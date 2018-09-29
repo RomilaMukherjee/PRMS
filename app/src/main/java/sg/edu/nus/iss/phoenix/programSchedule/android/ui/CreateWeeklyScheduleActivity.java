@@ -27,7 +27,6 @@ public class CreateWeeklyScheduleActivity extends AppCompatActivity {
 
     private EditText weekStartDate;
     private DatePickerDialog chooseDate;
-    private AnnualSchedule annualSchedule;
     private Button createWeeklySchedule;
     private SharedPreferences sharedPreferences;
     private static final String TAG = CreateWeeklyScheduleActivity.class.getName();
@@ -37,8 +36,8 @@ public class CreateWeeklyScheduleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_weekly_schedule);
 
-        annualSchedule = new AnnualSchedule();
-        annualSchedule = (AnnualSchedule) getIntent().getSerializableExtra("AnnualSchedule");
+        //annualSchedule = new AnnualSchedule();
+        int annualSchedule = (int) getIntent().getSerializableExtra("AnnualSchedule");
         weekStartDate = (EditText) findViewById(R.id.week_startdate);
         createWeeklySchedule = (Button) findViewById(R.id.create_weekly_schedule);
         sharedPreferences = getSharedPreferences("UserCredentials", MODE_PRIVATE);
@@ -55,7 +54,7 @@ public class CreateWeeklyScheduleActivity extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                         Log.v(TAG, "");
-                        if(annualSchedule.getYear() == year)
+                        if(annualSchedule == year)
                         weekStartDate.setText(day+"-"+month+"-"+year);
                         else {
                             Snackbar.make(view, "Week should be created within the year", Snackbar.LENGTH_LONG)
@@ -81,8 +80,10 @@ public class CreateWeeklyScheduleActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     if(startDate != null) {
+                        AnnualSchedule annualScheduleObj = new AnnualSchedule(annualSchedule, sharedPreferences.getString("username", "No Name found"));
+                        ControlFactory.getMaintainScheduleController().selectCreateSchedule(annualScheduleObj);
                         //Log.v(TAG, "Start date :" + startDate.toString());
-                        WeeklySchedule weeklySchedule = new WeeklySchedule(startDate, sharedPreferences.getString("username", "No Name found"), annualSchedule.getYear());
+                        WeeklySchedule weeklySchedule = new WeeklySchedule(startDate, sharedPreferences.getString("username", "No Name found"), annualSchedule);
                         ControlFactory.getMaintainScheduleController().selectCreateWeeklySchedule(weeklySchedule);
                     }
                     else {

@@ -19,7 +19,7 @@ public class ProgramSlot implements Serializable {
     private String presenterName;
 
     public ProgramSlot(String programName, String dateOfProgram, String startTime,String time) {
-        this.producerName = programName;
+        this.programName = programName;
         this.dateOfProgram = dateOfProgram;
         this.startTime = startTime;
         this.time =time;
