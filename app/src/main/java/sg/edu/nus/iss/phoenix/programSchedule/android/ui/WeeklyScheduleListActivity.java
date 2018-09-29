@@ -1,17 +1,18 @@
-package sg.edu.nus.iss.phoenix;
+package sg.edu.nus.iss.phoenix.programSchedule.android.ui;
 
 import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import sg.edu.nus.iss.phoenix.R;
 import sg.edu.nus.iss.phoenix.core.android.controller.ControlFactory;
-import sg.edu.nus.iss.phoenix.programSchedule.android.ui.WeeklyScheduleAdapter;
 import sg.edu.nus.iss.phoenix.programSchedule.entity.AnnualSchedule;
 import sg.edu.nus.iss.phoenix.programSchedule.entity.WeeklySchedule;
 
@@ -34,6 +35,17 @@ public class WeeklyScheduleListActivity extends AppCompatActivity {
 
         weeklyScheduleAdapter = new WeeklyScheduleAdapter(this, weeklySchedules);
         weeklyScheduleList.setAdapter(weeklyScheduleAdapter);
+
+        weeklyScheduleList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                WeeklySchedule weekSchedule = (WeeklySchedule) adapterView.getItemAtPosition(position);
+                Intent intent = new Intent(WeeklyScheduleListActivity.this, ProgramSlotListActivity.class);
+                intent.putExtra("WeekForSelectedAnnual", weekSchedule);
+                startActivity(intent);
+                WeeklyScheduleListActivity.this.finish();
+            }
+        });
 
     }
 
