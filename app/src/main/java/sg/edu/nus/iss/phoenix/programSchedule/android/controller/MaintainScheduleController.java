@@ -69,6 +69,20 @@ public class MaintainScheduleController {
         MainController.displayScreen(intent);
     }
 
+    public void producerPresenterSelected(String name) {
+        Intent intent = new Intent(MainController.getApp(), MaintainProgramSlotActivity.class);
+        intent.putExtra("prodpres", name);
+        MainController.displayScreen(intent);
+    }
+
+    public void programSeleced(String name) {
+        Intent intent = new Intent(MainController.getApp(), MaintainProgramSlotActivity.class);
+        intent.putExtra("programName", name);
+        MainController.displayScreen(intent);
+    }
+
+
+
     public void programsRetrieved(List<AnnualSchedule> annualSchedules) {
         Log.d(TAG,"Object of slot list activity"+slotListActivity);
         Log.d(TAG,"Object of maintainScheduleProgramActivity list activity"+maintainScheduleProgramActivity);

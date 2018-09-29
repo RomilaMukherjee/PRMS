@@ -37,9 +37,10 @@ public class MaintainProgramSlotActivity extends AppCompatActivity {
     private EditText mPSYearEditText;
     private EditText mPSProducerText;
     private EditText mPSPresenterText;
-    private Button mbtn_btnCopySlot;
+    private Button producerButton,presenterButton, programNameButton;
     private ProgressBar mslot_loading_indicator;
     private ProgramSlot programSlot;
+    private String producerPresenter,programName;
     boolean editMode = false;
     private static final String TAG = "MaintainProgramSlotActivity";
     SimpleDateFormat sdformat = new SimpleDateFormat("dd/MM/yyyy");
@@ -52,6 +53,12 @@ public class MaintainProgramSlotActivity extends AppCompatActivity {
         setContentView(R.layout.activity_program_slot);
         programSlot = new ProgramSlot();
         programSlot = (ProgramSlot) getIntent().getSerializableExtra("SlotSelected");
+        producerPresenter = (String) getIntent().getSerializableExtra("prodpres");
+        programName = (String) getIntent().getSerializableExtra("programName");
+        producerButton = (Button) findViewById(R.id.view_producer);
+        presenterButton = (Button) findViewById(R.id.view_presenter);
+        programNameButton = (Button) findViewById(R.id.view_program);
+
         // Find all relevant views that we will need to read user input from
         mPNameEditText = (EditText) findViewById(R.id.maintain_program_name_text_view);
         mPSStartDateText = (EditText) findViewById(R.id.maintain_program_startDate_text_view);
@@ -62,7 +69,14 @@ public class MaintainProgramSlotActivity extends AppCompatActivity {
         mPSProducerText = (EditText)findViewById(R.id.maintain_program_slot_producer_text_view);
         mPSPresenterText = (EditText)findViewById(R.id.maintain_program_slot_presenter_text_view);
         mslot_loading_indicator = (ProgressBar) findViewById(R.id.pb_slot_loading_indicator);
-
+        if(producerPresenter!=null)
+        {
+            mPSPresenterText.setText(producerPresenter);
+        }
+        if(programName!=null)
+        {
+            mPNameEditText.setText((programName));
+        }
  //       try {
             // final ProgramSlot editSlotObj = (ProgramSlot) getIntent().getSerializableExtra(ApplicationConstant.programNameParam);
 //            if (programSlot != null) {
@@ -94,6 +108,27 @@ public class MaintainProgramSlotActivity extends AppCompatActivity {
                     programSlot.getProducerName(),programSlot.getPresenterName());
             ControlFactory.getMaintainScheduleController().copyProgramSlot(slotObj);
         }
+
+        producerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ControlFactory.getMaintainScheduleController().startProducerScreen("producer");
+            }
+        });
+
+        presenterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ControlFactory.getMaintainScheduleController().startProducerScreen("presenter");
+            }
+        });
+
+        programNameButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ControlFactory.getReviewSelectProgramController().startUseCase();
+            }
+        });
     }
 
     @Override
@@ -176,7 +211,6 @@ public class MaintainProgramSlotActivity extends AppCompatActivity {
 
     public void createProgramSlot() {
         editMode=false;
-        mPNameEditText.setText("", TextView.BufferType.EDITABLE);
         mPSStartTimeText.setText("", TextView.BufferType.EDITABLE);
         mPSDurationEditText.setText("", TextView.BufferType.EDITABLE);
         mPSStartDateText.setText("",TextView.BufferType.EDITABLE);

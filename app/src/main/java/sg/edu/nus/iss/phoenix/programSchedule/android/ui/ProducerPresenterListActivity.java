@@ -89,7 +89,7 @@ public class ProducerPresenterListActivity extends AppCompatActivity {
                 }
                 else {
                     Log.v(TAG, "Viewing radio program: " + selectedUser.getName() + "...");
-                    //ControlFactory.getProgramController().selectEditProgram(selectedRP);
+                    ControlFactory.getMaintainScheduleController().producerPresenterSelected(selectedUser.getName());
                 }
         }
 
