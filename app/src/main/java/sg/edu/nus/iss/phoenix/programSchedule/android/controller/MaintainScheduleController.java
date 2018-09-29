@@ -5,7 +5,7 @@ import android.util.Log;
 
 import java.util.List;
 
-import sg.edu.nus.iss.phoenix.WeeklyScheduleListActivity;
+import sg.edu.nus.iss.phoenix.programSchedule.android.ui.WeeklyScheduleListActivity;
 import sg.edu.nus.iss.phoenix.programSchedule.android.delegate.RetriveWeeklyScheduleDelegate;
 import sg.edu.nus.iss.phoenix.programSchedule.android.ui.ProducerPresenterListActivity;
 import sg.edu.nus.iss.phoenix.programSchedule.android.delegate.CopyProgramSlotDelegate;
@@ -20,6 +20,7 @@ import sg.edu.nus.iss.phoenix.programSchedule.android.ui.MaintainScheduleProgram
 import sg.edu.nus.iss.phoenix.programSchedule.android.ui.MaintainScheduleActivity;
 import sg.edu.nus.iss.phoenix.programSchedule.android.ui.ProgramSlotListActivity;
 import sg.edu.nus.iss.phoenix.programSchedule.android.ui.CreateProgramSlotActivity;
+import sg.edu.nus.iss.phoenix.programSchedule.android.ui.SelectScheduleActivity;
 import sg.edu.nus.iss.phoenix.programSchedule.android.ui.UpdateProgramSlotActivity;
 import sg.edu.nus.iss.phoenix.programSchedule.entity.AnnualSchedule;
 import sg.edu.nus.iss.phoenix.programSchedule.entity.ProgramSlot;
@@ -105,7 +106,7 @@ public class MaintainScheduleController {
     }
 
     public void startProgramSlot(){
-        Intent intent = new Intent(MainController.getApp(), ProgramSlotListActivity.class);
+        Intent intent = new Intent(MainController.getApp(), SelectScheduleActivity.class);
         MainController.displayScreen(intent);
     }
 
