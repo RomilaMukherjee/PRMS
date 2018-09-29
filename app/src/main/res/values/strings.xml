@@ -43,4 +43,5 @@
     <string name="title_maintain_program_slot">Program Slot</string>
     <string name="btn_create_slot">Create</string>
     <string name="title_activity_slot_details">SlotDetails</string>
+    <string name="title_activity_select_schedule">SelectScheduleActivity</string>
 </resources>
