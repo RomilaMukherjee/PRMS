@@ -1,12 +1,13 @@
 package sg.edu.nus.iss.phoenix.programSchedule.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by Ragu on 24/9/2018.
  */
 
-public class WeeklySchedule {
+public class WeeklySchedule implements Serializable{
     private Date startDate;
     private String assignedBy;
     private int year;
