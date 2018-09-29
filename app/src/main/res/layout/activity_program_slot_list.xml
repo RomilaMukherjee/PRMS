@@ -20,12 +20,4 @@
         tools:context=".programSchedule.android.ui.ProgramSlotListActivity">
 
     </ListView>
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_create_program_slot"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_create"/>
 </RelativeLayout>
