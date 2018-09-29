@@ -42,6 +42,8 @@
             android:label="@string/title_activity_maintain_schedule_program"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".programSchedule.android.ui.CreateScheduleActivity" />
+        <activity android:name=".user.android.ui.CreateUserScreen"
+                  android:label="Create A User Screen"/>
         <activity
             android:name=".programSchedule.android.ui.ProgramSlotListActivity"
             android:label="@string/title_activity_program_slot_list" />
@@ -54,7 +56,6 @@
         <activity android:name=".user.android.ui.UserListScreen" />
         <activity android:name=".programSchedule.android.ui.MaintainScheduleActivity" />
         <activity android:name=".programSchedule.android.ui.CreateProgramSlotActivity" />
-        <activity android:name=".programSchedule.android.ui.UpdateProgramSlotActivity" />
         <activity android:name=".programSchedule.android.ui.UpdateProgramSlotActivity" />
         <activity android:name=".ProducerListActivity" />
         <activity android:name=".ProducerItemActivity" />
