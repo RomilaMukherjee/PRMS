@@ -60,8 +60,15 @@
         <activity android:name=".programSchedule.android.ui.ProducerPresenterListActivity" />
         <activity android:name=".programSchedule.android.ui.ProducerItemActivity" />
         <activity android:name=".PresenterListActivity" />
+
         <activity android:name=".WeeklyScheduleListActivity" />
-        <activity android:name=".WeeklyScheduleItemActivity"></activity>
+        <activity android:name=".WeeklyScheduleItemActivity"/>
+
+        <activity
+            android:name=".programSchedule.android.ui.SelectScheduleActivity"
+            android:label="@string/title_activity_select_schedule"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
     </application>
 
 </manifest>
