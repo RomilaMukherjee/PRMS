@@ -55,7 +55,8 @@ public class ProgramSlotListActivity extends AppCompatActivity {
                     String producer = "dogbert";
                     String presenter = "dilbert";
 
-                    ProgramSlot slotObj = new ProgramSlot(programName, dateInStr, timeInStr, progDuration);
+                    ProgramSlot slotObj = new ProgramSlot(programName, dateInStr, timeInStr, progDuration,weekDateInStr,
+                            producer,presenter);
                     ControlFactory.getMaintainScheduleController().copyProgramSlot(slotObj);
                 }
             });

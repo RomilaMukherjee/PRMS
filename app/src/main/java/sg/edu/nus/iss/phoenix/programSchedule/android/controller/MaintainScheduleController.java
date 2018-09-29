@@ -166,7 +166,8 @@ public class MaintainScheduleController {
      */
     public void displaySlotList(ProgramSlotListActivity slotListActivity){
         this.slotListActivity = slotListActivity;
-        new RetrieveProgramSlotDelegate(this).execute("2018-08-26 00:00:00");
+        //new RetrieveProgramSlotDelegate(this).execute("2018-08-26 00:00:00");
+        new RetrieveProgramSlotDelegate(this).execute("all_programslots");
     }
 
     public void programSlotRetrieved(List<ProgramSlot> programSlotList){
