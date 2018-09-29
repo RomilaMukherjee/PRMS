@@ -57,9 +57,11 @@
         <activity android:name=".programSchedule.android.ui.MaintainScheduleActivity" />
         <activity android:name=".programSchedule.android.ui.CreateProgramSlotActivity" />
         <activity android:name=".programSchedule.android.ui.UpdateProgramSlotActivity" />
-        <activity android:name=".ProducerListActivity" />
-        <activity android:name=".ProducerItemActivity" />
-        <activity android:name=".PresenterListActivity"></activity>
+        <activity android:name=".programSchedule.android.ui.ProducerPresenterListActivity" />
+        <activity android:name=".programSchedule.android.ui.ProducerItemActivity" />
+        <activity android:name=".PresenterListActivity" />
+        <activity android:name=".WeeklyScheduleListActivity" />
+        <activity android:name=".WeeklyScheduleItemActivity"></activity>
     </application>
 
 </manifest>

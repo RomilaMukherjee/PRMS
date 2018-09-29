@@ -20,6 +20,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
+import sg.edu.nus.iss.phoenix.programSchedule.android.controller.MaintainScheduleController;
 import sg.edu.nus.iss.phoenix.programSchedule.entity.AnnualSchedule;
 import sg.edu.nus.iss.phoenix.programSchedule.entity.WeeklySchedule;
 
@@ -29,13 +30,19 @@ import static sg.edu.nus.iss.phoenix.core.android.delegate.DelegateHelper.PRMS_B
  * Created by Ragu on 25/9/2018.
  */
 
-public class RetriveWeeklyScheduleDelegate extends AsyncTask<String, Void, String> {
+public class RetriveWeeklyScheduleDelegate extends AsyncTask<Integer, Void, String> {
+
+    private MaintainScheduleController maintainScheduleController = null;
+    public RetriveWeeklyScheduleDelegate(MaintainScheduleController maintainScheduleController) {
+        this.maintainScheduleController = maintainScheduleController;
+    }
 
     private static final String TAG = RetriveAnnualScheduleDelegate.class.getName();
     @Override
-    protected String doInBackground(String... params) {
-        Uri builtUri1 = Uri.parse( PRMS_BASE_URL_PROGRAM_SCHEDULE).buildUpon().build();
-        Uri builtUri = Uri.withAppendedPath(builtUri1, params[0]).buildUpon().build();
+    protected String doInBackground(Integer... params) {
+        Uri builtUri = Uri.parse( PRMS_BASE_URL_PROGRAM_SCHEDULE).buildUpon().build();
+        builtUri = Uri.withAppendedPath(builtUri, "all_weeklySchedule").buildUpon().build();
+        builtUri = Uri.withAppendedPath(builtUri, String.valueOf(params[0])).buildUpon().build();
         Log.v(TAG, builtUri.toString());
         URL url = null;
         try {
@@ -88,12 +95,15 @@ public class RetriveWeeklyScheduleDelegate extends AsyncTask<String, Void, Strin
                     if(startDateObj != null)
                     weeklySchedules.add(new WeeklySchedule(startDateObj, assignedBy, year));
                 }
-                Log.v(TAG, "Json response :" + weeklySchedules.get(0).getStartDate());
             } catch (JSONException e) {
                 Log.v(TAG, e.getMessage());
             }
         } else {
             Log.v(TAG, "JSON response error.");
+        }
+
+        if(maintainScheduleController != null) {
+            maintainScheduleController.weeklySchedulesRetrived(weeklySchedules);
         }
     }
 }

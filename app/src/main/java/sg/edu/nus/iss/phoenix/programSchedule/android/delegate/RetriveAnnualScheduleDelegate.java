@@ -86,7 +86,6 @@ public class RetriveAnnualScheduleDelegate extends AsyncTask<String, Void, Strin
 
                     annualSchedules.add(new AnnualSchedule(year, assignedBy));
                 }
-                Log.v(TAG, "Json response :" + annualSchedules.get(0).getYear());
             } catch (JSONException e) {
                 Log.v(TAG, e.getMessage());
             }

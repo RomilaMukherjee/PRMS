@@ -54,8 +54,9 @@ public class CreateWeeklyScheduleActivity extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                         Log.v(TAG, "");
-                        if(annualSchedule == year)
-                        weekStartDate.setText(day+"-"+month+"-"+year);
+                        if(annualSchedule == year) {
+                            weekStartDate.setText(day + "-" + month + "-" + year);
+                        }
                         else {
                             Snackbar.make(view, "Week should be created within the year", Snackbar.LENGTH_LONG)
                                     .setAction("Action", null).show();

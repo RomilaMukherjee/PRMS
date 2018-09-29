@@ -5,6 +5,8 @@ import android.util.Log;
 
 import java.util.List;
 
+import sg.edu.nus.iss.phoenix.WeeklyScheduleListActivity;
+import sg.edu.nus.iss.phoenix.programSchedule.android.delegate.RetriveWeeklyScheduleDelegate;
 import sg.edu.nus.iss.phoenix.programSchedule.android.ui.ProducerPresenterListActivity;
 import sg.edu.nus.iss.phoenix.programSchedule.android.delegate.CopyProgramSlotDelegate;
 import sg.edu.nus.iss.phoenix.programSchedule.android.delegate.CreateScheduleDelegate;
@@ -39,6 +41,7 @@ public class MaintainScheduleController {
     private ProducerPresenterListActivity producerPresenterListActivity;
 	
 	private MaintainScheduleProgramActivity maintainScheduleProgramActivity;
+	private WeeklyScheduleListActivity weeklyScheduleListActivity;
 
     public void startUseCase() {
         Intent intent = new Intent(MainController.getApp(), MaintainScheduleActivity.class);
@@ -110,6 +113,11 @@ public class MaintainScheduleController {
         new CreateWeeklyScheduleDelegate(this).execute(weeklySchedule);
     }
 
+    public void getWeeklyListByYear(WeeklyScheduleListActivity weeklyScheduleListActivity, AnnualSchedule annualSchedule) {
+        this.weeklyScheduleListActivity = weeklyScheduleListActivity;
+        new RetriveWeeklyScheduleDelegate(this).execute(annualSchedule.getYear());
+    }
+
     /**
      * API to display copy program
      * slot screen
@@ -163,6 +171,12 @@ public class MaintainScheduleController {
     public void programSlotRetrieved(List<ProgramSlot> programSlotList){
         if(slotListActivity!=null) {
            slotListActivity.showSlotList(programSlotList);
+        }
+    }
+
+    public void weeklySchedulesRetrived(List<WeeklySchedule> weeklySchedules) {
+        if(weeklyScheduleListActivity!=null) {
+            weeklyScheduleListActivity.showWeeklySchedules(weeklySchedules);
         }
     }
 }

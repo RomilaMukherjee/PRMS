@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sg.edu.nus.iss.phoenix.R;
+import sg.edu.nus.iss.phoenix.WeeklyScheduleListActivity;
 import sg.edu.nus.iss.phoenix.core.android.controller.ControlFactory;
 import sg.edu.nus.iss.phoenix.programSchedule.entity.AnnualSchedule;
 
@@ -53,6 +54,17 @@ public class MaintainScheduleProgramActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        annualScheduleList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                AnnualSchedule annualSchedule = (AnnualSchedule) adapterView.getItemAtPosition(position);
+                Intent intent = new Intent(MaintainScheduleProgramActivity.this, WeeklyScheduleListActivity.class);
+                intent.putExtra("AnnualScheduleToGetWeek", annualSchedule);
+                startActivity(intent);
+                MaintainScheduleProgramActivity.this.finish();
+            }
+        });
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_create_schedule);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,7 +87,6 @@ public class MaintainScheduleProgramActivity extends AppCompatActivity {
 
     public void showPrograms(List<AnnualSchedule> annualSchedules) {
         annualScheduleAdapter.clear();
-        Log.v(TAG, "message :" + annualSchedules.get(0).getYear());
         for (int i = 0; i < annualSchedules.size(); i++) {
             annualScheduleAdapter.add(annualSchedules.get(i));
         }
