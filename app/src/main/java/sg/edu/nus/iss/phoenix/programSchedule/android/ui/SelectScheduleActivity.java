@@ -28,13 +28,6 @@ public class SelectScheduleActivity extends AppCompatActivity {
             }
         });
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_create_program_slot);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ControlFactory.getMaintainScheduleController().createProgramSlot();
-            }
-        });
 
     }
 

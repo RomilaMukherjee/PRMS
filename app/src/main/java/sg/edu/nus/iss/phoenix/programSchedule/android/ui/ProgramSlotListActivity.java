@@ -52,25 +52,14 @@ public class ProgramSlotListActivity extends AppCompatActivity {
                 ProgramSlotListActivity.this.finish();
             }
         });
-//         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_create_program_slot);
-//            fab.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    //**Create program Slot dummy object to copy and persist data**//*
-//                    int annualYear = 2018;
-//                    String programName = "charity";
-//                    String dateInStr = "22/09/2018";
-//                    String timeInStr = "06:30:00";
-//                    String weekDateInStr = "17/09/2018";
-//                    String progDuration = "00:30:00";
-//                    String producer = "dogbert";
-//                    String presenter = "dilbert";
-//
-//                    ProgramSlot slotObj = new ProgramSlot(programName, dateInStr, timeInStr, progDuration,weekDateInStr,
-//                            producer,presenter);
-//                    ControlFactory.getMaintainScheduleController().copyProgramSlot(slotObj);
-//                }
-//            });
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_create_program_slot);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ControlFactory.getMaintainScheduleController().createProgramSlot();
+            }
+        });
 
     }
 

@@ -82,21 +82,7 @@
             android:maxLength="8"
             />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Year"
-            tools:text="Year" />
-        <EditText
-            android:id="@+id/maintain_program_slot_year_text_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:maxLength="8"
-            tools:text="Year"
-           />
-
-
-        <TextView
+           <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Producer"
