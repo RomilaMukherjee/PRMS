@@ -61,8 +61,8 @@
         <activity android:name=".programSchedule.android.ui.ProducerItemActivity" />
         <activity android:name=".PresenterListActivity" />
 
-        <activity android:name=".WeeklyScheduleListActivity" />
-        <activity android:name=".WeeklyScheduleItemActivity"/>
+        <activity android:name=".programSchedule.android.ui.WeeklyScheduleListActivity" />
+        <activity android:name=".programSchedule.android.ui.WeeklyScheduleItemActivity"/>
 
         <activity
             android:name=".programSchedule.android.ui.SelectScheduleActivity"
