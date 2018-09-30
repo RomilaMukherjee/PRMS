@@ -86,7 +86,7 @@ public class RetrieveUsersDelegate extends AsyncTask<String,Void,String > {
                     String name = rpJson.getString("name");
                     String password = rpJson.getString("password");
 
-                    users.add(new User(id,name,password,roles));
+                    users.add(new User(id,password,name,roles));
                 }
             } catch (JSONException e) {
                 Log.v(TAG, e.getMessage());

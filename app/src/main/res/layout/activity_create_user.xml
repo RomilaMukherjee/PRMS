@@ -41,42 +41,37 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Please Enter Your New User Details Below"
-            android:textSize="14sp" />
+            android:textSize="24sp" />
 
         <EditText
-            android:id="@+id/editTextName"
+            android:id="@+id/EditTextName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name" />
+            android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/editTextID"
+            android:id="@+id/EditTextID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="ID" />
+            android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/editTextPassword"
+            android:id="@+id/EditTextPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPassword"
-            android:text="Password" />
+            android:inputType="textPassword" />
 
-        <EditText
-            android:id="@+id/editTextRole"
+        <Spinner
+            android:id="@+id/Role_Spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Role" />
+            android:entries="@array/role_array"/>
 
         <Button
-            android:id="@+id/buttonAddUser"
+            android:id="@+id/ButtonAddUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Create" />

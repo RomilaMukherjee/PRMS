@@ -7,12 +7,18 @@ public class User {
     private String password;
     private String name;
     private ArrayList<Role> roles = new ArrayList<Role>();
+    //private String role;
 
-    public User(String id, String password, String name, ArrayList<Role> roles) {
+    public User(String id, String password, String name, ArrayList<Role> role) {
         this.id = id;
         this.password = password;
         this.name = name;
         this.roles = roles;
+        //this.role=role;
+    }
+    public User(String id, String name){
+        this.id = id;
+        this.name=name;
     }
 
     public String getId() {
@@ -30,6 +36,9 @@ public class User {
     public ArrayList<Role> getRoles() {
         return roles;
     }
+    /*public String getRole() {
+        return role;
+    }*/
 
     public void setId(String id) {
         this.id = id;
@@ -43,7 +52,12 @@ public class User {
         this.name = name;
     }
 
+    //public void setRole(String role){this.role=role;}
+
     public void setRoles(ArrayList<Role> roles) {
         this.roles = roles;
     }
+
+
+
 }
