@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import sg.edu.nus.iss.phoenix.programSchedule.android.controller.MaintainScheduleController;
-import sg.edu.nus.iss.phoenix.user.android.entity.User;
+import sg.edu.nus.iss.phoenix.user.entity.User;
 
 import static sg.edu.nus.iss.phoenix.core.android.delegate.DelegateHelper.PRMS_BASE_URL_USER;
 

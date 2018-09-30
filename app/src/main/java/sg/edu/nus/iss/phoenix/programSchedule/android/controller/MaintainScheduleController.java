@@ -26,7 +26,7 @@ import sg.edu.nus.iss.phoenix.programSchedule.entity.AnnualSchedule;
 import sg.edu.nus.iss.phoenix.programSchedule.entity.ProgramSlot;
 import sg.edu.nus.iss.phoenix.programSchedule.entity.WeeklySchedule;
 import sg.edu.nus.iss.phoenix.programSchedule.android.delegate.RetriveProducerPresenterDelegate;
-import sg.edu.nus.iss.phoenix.user.android.entity.User;
+import sg.edu.nus.iss.phoenix.user.entity.User;
 import sg.edu.nus.iss.phoenix.utility.ApplicationConstant;
 
 /**

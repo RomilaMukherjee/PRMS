@@ -2,15 +2,11 @@ package sg.edu.nus.iss.phoenix;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import sg.edu.nus.iss.phoenix.core.android.controller.ControlFactory;
-import sg.edu.nus.iss.phoenix.user.android.entity.User;
+import sg.edu.nus.iss.phoenix.user.entity.User;
 
 public class PresenterListActivity extends AppCompatActivity {
 

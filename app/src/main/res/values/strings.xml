@@ -44,4 +44,12 @@
     <string name="btn_create_slot">Create</string>
     <string name="title_activity_slot_details">SlotDetails</string>
     <string name="title_activity_select_schedule">SelectScheduleActivity</string>
+    <string-array name="role_array">
+        <item>admin</item>
+
+        <item>chaprasi</item>
+
+        <item>programmer</item>
+
+    </string-array>
 </resources>

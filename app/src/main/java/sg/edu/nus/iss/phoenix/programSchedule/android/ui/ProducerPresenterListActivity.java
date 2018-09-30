@@ -16,8 +16,8 @@ import java.util.List;
 
 import sg.edu.nus.iss.phoenix.R;
 import sg.edu.nus.iss.phoenix.core.android.controller.ControlFactory;
-import sg.edu.nus.iss.phoenix.user.android.entity.User;
 import sg.edu.nus.iss.phoenix.user.android.ui.ProducerScreenAdapter;
+import sg.edu.nus.iss.phoenix.user.entity.User;
 
 public class ProducerPresenterListActivity extends AppCompatActivity {
 

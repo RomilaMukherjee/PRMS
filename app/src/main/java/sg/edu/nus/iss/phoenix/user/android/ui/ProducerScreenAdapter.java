@@ -13,8 +13,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import sg.edu.nus.iss.phoenix.R;
-import sg.edu.nus.iss.phoenix.programSchedule.entity.AnnualSchedule;
-import sg.edu.nus.iss.phoenix.user.android.entity.User;
+import sg.edu.nus.iss.phoenix.user.entity.User;
 
 /**
  * Created by Ragu on 26/9/2018.
