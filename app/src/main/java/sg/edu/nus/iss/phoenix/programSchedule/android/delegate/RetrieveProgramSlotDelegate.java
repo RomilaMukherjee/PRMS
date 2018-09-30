@@ -13,7 +13,10 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -82,14 +85,25 @@ public class RetrieveProgramSlotDelegate extends AsyncTask<String, Void, String>
                 for (int i = 0; i < psArray.length(); i++) {
                     JSONObject asJson = psArray.getJSONObject(i);
                     String duration = asJson.getString("duration");
-                    String programName = asJson.getString("programSlotName");
+                    String programName = asJson.getString("programName");
                     String dateofProgram = asJson.getString("dateofProgram");
                     String startTime = asJson.getString("startTime");
                     String weekStartDate = asJson.getString("weekStartDate");
                     String presenter = asJson.getString("presenter");
                     String producer = asJson.getString("producer");
-
-                    slots.add(new ProgramSlot(programName, dateofProgram,startTime,duration,weekStartDate,
+                    Date dateOfProgram = null;
+                    Date weekDate= null;
+                    Date starttime = null;
+                    Date durationT= null;
+                    try {
+                        dateOfProgram = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(dateofProgram);
+                        weekDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(weekStartDate);
+                        starttime = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(startTime);
+                        durationT= new SimpleDateFormat("hh:mm:ss").parse(duration);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    slots.add(new ProgramSlot(programName, dateOfProgram ,starttime,durationT,weekDate,
                             producer,presenter));
                 }
             } catch (JSONException e) {

@@ -44,7 +44,7 @@
             android:id="@+id/maintain_program_slot_producer_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLength="8"
+            android:maxLength="20"
             />
         <Button
             android:layout_width="match_parent"
@@ -63,7 +63,7 @@
             android:id="@+id/maintain_program_slot_presenter_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLength="8"
+            android:maxLength="20"
             />
 
         <Button
@@ -94,7 +94,7 @@
             android:id="@+id/maintain_program_slot_start_time_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLength="8"
+            android:maxLength="20"
             tools:text="00:30:00" />
 
         <TextView
@@ -106,20 +106,20 @@
             android:id="@+id/maintain_program_slot_duration_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLength="8"
+            android:maxLength="20"
             tools:text="30 minutes"
             />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Week"
+            android:text="Week StartDate"
             tools:text="Week date" />
         <EditText
             android:id="@+id/maintain_program_slot_week_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLength="8"
+            android:maxLength="20"
             />
 
 

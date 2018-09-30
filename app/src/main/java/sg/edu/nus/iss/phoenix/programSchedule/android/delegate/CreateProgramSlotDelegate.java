@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 
 import sg.edu.nus.iss.phoenix.programSchedule.android.controller.MaintainScheduleController;
 import sg.edu.nus.iss.phoenix.programSchedule.entity.ProgramSlot;
@@ -22,6 +23,8 @@ public class CreateProgramSlotDelegate extends AsyncTask<ProgramSlot, Void, Bool
 private final MaintainScheduleController maintainScheduleController;
 
 private static final String TAG = CreateProgramSlotDelegate.class.getName();
+    SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+    SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
 
 public CreateProgramSlotDelegate(MaintainScheduleController maintainScheduleController) {
         this.maintainScheduleController = maintainScheduleController;
@@ -43,10 +46,10 @@ protected Boolean doInBackground(ProgramSlot... programSlot) {
         JSONObject json = new JSONObject();
         try {
         json.put("programName", programSlot[0].getProgramName());
-        json.put("dateOfProgram", programSlot[0].getDateOfProgram());
-        json.put("time", programSlot[0].getTime());
-        json.put("startTime", programSlot[0].getStartTime());
-        json.put("weekStartDate", programSlot[0].getWeekStartDate());
+        json.put("dateofProgram", sdformat.format(programSlot[0].getDateOfProgram()));
+        json.put("time", timeFormat.format(programSlot[0].getDuration()));
+        json.put("startTime", sdformat.format(programSlot[0].getStartTime()));
+        json.put("weekStartDate", sdformat.format(programSlot[0].getWeekStartDate()));
         json.put("producer", programSlot[0].getProducerName());
         json.put("presenter", programSlot[0].getPresenterName());
         } catch (JSONException e) {
@@ -67,6 +70,7 @@ protected Boolean doInBackground(ProgramSlot... programSlot) {
         dos.writeUTF(json.toString());
         dos.write(256);
         Log.v(TAG, "Http PUT response " + httpURLConnection.getResponseCode());
+        Log.v("SendingData" , json.toString());
         success = true;
         } catch (IOException exception) {
         Log.v(TAG, exception.getMessage());

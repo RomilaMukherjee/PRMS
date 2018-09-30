@@ -1,6 +1,7 @@
 package sg.edu.nus.iss.phoenix.programSchedule.entity;
 
 import java.io.Serializable;
+import java.sql.Time;
 import java.util.Date;
 
 /**
@@ -10,23 +11,23 @@ import java.util.Date;
 public class ProgramSlot implements Serializable {
 
     private String programName;
-    private String dateOfProgram;
-    private String startTime;
-    private String time;
+    private Date dateOfProgram;
+    private Date startTime;
+    private Date duration;
     private int annualYear;
-    private String weekStartDate;
+    private Date weekStartDate;
     private String producerName;
     private String presenterName;
 
     public  ProgramSlot(){
 
     }
-    public ProgramSlot(String programName, String dateOfProgram, String startTime,String time,
-                       String weekStartDate, String producerName,String presenterName) {
+    public ProgramSlot(String programName, Date dateOfProgram, Date startTime,Date time,
+                       Date weekStartDate, String producerName,String presenterName) {
         this.programName = programName;
         this.dateOfProgram = dateOfProgram;
         this.startTime = startTime;
-        this.time =time;
+        this.duration =time;
         this.weekStartDate=weekStartDate;
         this.producerName=producerName;
         this.presenterName=presenterName;
@@ -40,37 +41,37 @@ public class ProgramSlot implements Serializable {
         this.programName = programName;
     }
 
-    public String getDateOfProgram() {
+    public Date getDateOfProgram() {
         return dateOfProgram;
     }
 
-    public void setDateOfProgram(String dateOfProgram) {
+    public void setDateOfProgram(Date dateOfProgram) {
         this.dateOfProgram = dateOfProgram;
     }
 
-    public String getStartTime() {
+    public Date getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(String startTime) {
+    public void setStartTime(Date startTime) {
         this.startTime = startTime;
     }
 
-    public String getTime() {
-        return time;
+    public Date getDuration() {
+        return duration;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setDuration(Date time) {
+        this.duration = time;
     }
 
     public int getAnnualYear() { return annualYear;}
 
     public void setAnnualYear(int annualYear) { this.annualYear = annualYear;}
 
-    public String getWeekStartDate() {return weekStartDate;}
+    public Date getWeekStartDate() {return weekStartDate;}
 
-    public void setWeekStartDate(String weekStartDate) {this.weekStartDate = weekStartDate;}
+    public void setWeekStartDate(Date weekStartDate) {this.weekStartDate = weekStartDate;}
 
     public String getProducerName() {return producerName;}
 

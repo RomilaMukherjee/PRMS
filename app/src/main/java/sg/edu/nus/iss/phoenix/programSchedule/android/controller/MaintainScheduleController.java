@@ -3,6 +3,9 @@ package sg.edu.nus.iss.phoenix.programSchedule.android.controller;
 import android.content.Intent;
 import android.util.Log;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import sg.edu.nus.iss.phoenix.programSchedule.android.delegate.CreateProgramSlotDelegate;
@@ -43,6 +46,7 @@ public class MaintainScheduleController {
 	
 	private MaintainScheduleProgramActivity maintainScheduleProgramActivity;
 	private WeeklyScheduleListActivity weeklyScheduleListActivity;
+    final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
     public void startUseCase() {
         Intent intent = new Intent(MainController.getApp(), MaintainScheduleActivity.class);
@@ -230,7 +234,13 @@ public class MaintainScheduleController {
     }
 
     public void selectDeleteProgramSlot(ProgramSlot ps) {
-        new DeleteProgramSlotDelegate(this).execute(ps.getStartTime());
+        Date startDate = null;
+        try {
+            startDate= simpleDateFormat.parse(ps.getStartTime().toString());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        new DeleteProgramSlotDelegate(this).execute(String.valueOf(startDate));
     }
 
 }
