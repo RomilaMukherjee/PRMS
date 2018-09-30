@@ -47,9 +47,10 @@
     <string-array name="role_array">
         <item>admin</item>
 
-        <item>chaprasi</item>
+        <item>producer</item>
 
-        <item>programmer</item>
+        <item>presenter</item>
+        <item>manager</item>
 
     </string-array>
 </resources>

@@ -9,7 +9,7 @@ public class User {
     private ArrayList<Role> roles = new ArrayList<Role>();
     //private String role;
 
-    public User(String id, String password, String name, ArrayList<Role> role) {
+    public User(String id, String password, String name, ArrayList<Role> roles) {
         this.id = id;
         this.password = password;
         this.name = name;

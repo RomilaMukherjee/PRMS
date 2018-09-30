@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -17,64 +17,55 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
     </ScrollView>
 
-    <LinearLayout
-        android:layout_width="395dp"
-        android:layout_height="587dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Please Enter Your New User Details Below"
-            android:textSize="24sp" />
+            android:text="Enter User Details"
+            android:textStyle="bold"
+            android:textSize="30dp" />
 
         <EditText
             android:id="@+id/EditTextName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
+            android:textSize="25dp"
+            android:hint="Name"
+            android:layout_below="@+id/textView3"
             android:inputType="textPersonName" />
 
         <EditText
             android:id="@+id/EditTextID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
+            android:textSize="25dp"
+            android:layout_below="@+id/EditTextName"
+            android:hint="ID"
             android:inputType="textPersonName" />
 
         <EditText
             android:id="@+id/EditTextPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
+            android:textSize="25dp"
+            android:hint="Password"
+            android:layout_below="@+id/EditTextID"
             android:inputType="textPassword" />
 
         <Spinner
             android:id="@+id/Role_Spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/EditTextPassword"
             android:entries="@array/role_array"/>
 
         <Button
             android:id="@+id/ButtonAddUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:text="Create" />
-
-    </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

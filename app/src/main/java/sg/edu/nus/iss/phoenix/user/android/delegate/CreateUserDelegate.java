@@ -15,6 +15,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 
+import sg.edu.nus.iss.phoenix.user.android.controller.UserController;
 import sg.edu.nus.iss.phoenix.user.entity.User;
 
 import static sg.edu.nus.iss.phoenix.core.android.delegate.DelegateHelper.PRMS_BASE_URL_USER;
@@ -22,6 +23,11 @@ import static sg.edu.nus.iss.phoenix.core.android.delegate.DelegateHelper.PRMS_B
 public class CreateUserDelegate extends AsyncTask<User, Void, Boolean> {
 
     private static final String TAG = CreateUserDelegate.class.getName();
+    private UserController userController = null;
+
+    public CreateUserDelegate(UserController userController) {
+        this.userController = userController;
+    }
 
     @Override
     protected Boolean doInBackground(User... users) {
@@ -37,9 +43,17 @@ public class CreateUserDelegate extends AsyncTask<User, Void, Boolean> {
             return new Boolean(false);
         }
 
+        Log.v(TAG, "users[0] :" + users[0].toString());
         JSONObject json = new JSONObject();
+        Log.v(TAG, "Json string:" + users[0].getRoles().toString());
         JSONArray jsonArray = new JSONArray();
-        jsonArray.put(users[0].getRoles().get(0));
+        JSONObject jsonRole = new JSONObject();
+        try {
+            jsonRole.put("role",users[0].getRoles().get(0).getRole());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        jsonArray.put(jsonRole);
         try {
             json.put("name", users[0].getName());
             json.put("id", users[0].getId());
@@ -56,7 +70,7 @@ public class CreateUserDelegate extends AsyncTask<User, Void, Boolean> {
         try {
             httpURLConnection = (HttpURLConnection) url.openConnection();
             httpURLConnection.setInstanceFollowRedirects(false);
-            httpURLConnection.setRequestMethod("PUT");
+            httpURLConnection.setRequestMethod("POST");
             httpURLConnection.setRequestProperty("Content-Type", "application/json; charset=utf8");
             httpURLConnection.setDoInput(true);
             httpURLConnection.setDoOutput(true);
@@ -84,5 +98,8 @@ public class CreateUserDelegate extends AsyncTask<User, Void, Boolean> {
     @Override
     protected void onPostExecute(Boolean aBoolean) {
         super.onPostExecute(aBoolean);
+        if(userController != null) {
+            userController.startUseCase();
+        }
     }
 }

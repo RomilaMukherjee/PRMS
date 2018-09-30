@@ -33,7 +33,7 @@ public class UserController {
     }
 
     public void saveUser(User user){
-        new CreateUserDelegate().execute(user);
+        new CreateUserDelegate(this).execute(user);
     }
 
     public void onDeleteUser(User user, Context context) {

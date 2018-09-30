@@ -1,5 +1,6 @@
 package sg.edu.nus.iss.phoenix.user.android.ui;
 
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -56,10 +57,12 @@ public class CreateUserScreen extends AppCompatActivity {
 
                     fieldEmptyToast.show(); }
                 else{
+                    Log.v(TAG, "role :" + spinnerValue.getSelectedItem().toString());
 
                     //Adds a role to arraylist of roles specific to this user
                     rolesList.add(new Role(spinnerValue.getSelectedItem().toString()));
                     User newuser = new User(idField.getText().toString(),passwordField.getText().toString(),nameField.getText().toString(),rolesList);
+                    Log.v(TAG, "newuser :" + newuser.getRoles().get(0).getRole());
                     ControlFactory.getUserController().saveUser(newuser);
                     //userController.saveUser(newuser);
 
