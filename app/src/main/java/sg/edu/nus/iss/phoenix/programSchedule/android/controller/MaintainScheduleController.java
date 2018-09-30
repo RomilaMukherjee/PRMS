@@ -8,6 +8,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import sg.edu.nus.iss.phoenix.programSchedule.android.delegate.CreateProgramSlotDelegate;
+import sg.edu.nus.iss.phoenix.programSchedule.android.delegate.DeleteProgramSlotDelegate;
+import sg.edu.nus.iss.phoenix.programSchedule.android.delegate.UpdateProgramSlotDelegate;
+import sg.edu.nus.iss.phoenix.programSchedule.android.ui.MaintainScheduleActivity;
 import sg.edu.nus.iss.phoenix.programSchedule.android.ui.WeeklyScheduleListActivity;
 import sg.edu.nus.iss.phoenix.programSchedule.android.delegate.RetriveWeeklyScheduleDelegate;
 import sg.edu.nus.iss.phoenix.programSchedule.android.ui.ProducerPresenterListActivity;
@@ -22,14 +26,12 @@ import sg.edu.nus.iss.phoenix.programSchedule.android.ui.MaintainProgramSlotActi
 import sg.edu.nus.iss.phoenix.programSchedule.android.ui.MaintainScheduleProgramActivity;
 import sg.edu.nus.iss.phoenix.programSchedule.android.ui.MaintainScheduleActivity;
 import sg.edu.nus.iss.phoenix.programSchedule.android.ui.ProgramSlotListActivity;
-import sg.edu.nus.iss.phoenix.programSchedule.android.ui.CreateProgramSlotActivity;
 import sg.edu.nus.iss.phoenix.programSchedule.android.ui.SelectScheduleActivity;
-import sg.edu.nus.iss.phoenix.programSchedule.android.ui.UpdateProgramSlotActivity;
 import sg.edu.nus.iss.phoenix.programSchedule.entity.AnnualSchedule;
 import sg.edu.nus.iss.phoenix.programSchedule.entity.ProgramSlot;
 import sg.edu.nus.iss.phoenix.programSchedule.entity.WeeklySchedule;
 import sg.edu.nus.iss.phoenix.programSchedule.android.delegate.RetriveProducerPresenterDelegate;
-import sg.edu.nus.iss.phoenix.user.android.entity.User;
+import sg.edu.nus.iss.phoenix.user.entity.User;
 
 /**
  * Created by Ragu on 18/9/2018.
@@ -86,12 +88,12 @@ public class MaintainScheduleController {
     }
 
     public void startCreateProgramSlot() {
-        Intent intent = new Intent(MainController.getApp(), CreateProgramSlotActivity.class);
+        Intent intent = new Intent(MainController.getApp(), MaintainProgramSlotActivity.class);
         MainController.displayScreen(intent);
     }
 
     public void startUpdateProgramSlot() {
-        Intent intent = new Intent(MainController.getApp(), UpdateProgramSlotActivity.class);
+        Intent intent = new Intent(MainController.getApp(), MaintainProgramSlotActivity.class);
         MainController.displayScreen(intent);
     }
 
@@ -128,9 +130,9 @@ public class MaintainScheduleController {
      * @param progSlotObj
      */
     public void copyProgramSlot(ProgramSlot progSlotObj){
-        Log.v(TAG, "Copied radio program: " + progSlotObj.getProgramName());
+        Log.v(TAG, "Copied program slot: " + progSlotObj.getProgramName());
         Intent intentObj = new Intent(MainController.getApp(), MaintainProgramSlotActivity.class);
-        intentObj.putExtra(ApplicationConstant.programNameParam, progSlotObj);
+        intentObj.putExtra("SlotSelected", progSlotObj);
         MainController.displayScreen(intentObj);
     }
 
@@ -162,6 +164,19 @@ public class MaintainScheduleController {
         producerPresenterListActivity.showProducerList(producerList);
     }
 
+    public void producerPresenterSelected(String name, String role) {
+        Intent intent = new Intent(MainController.getApp(), MaintainProgramSlotActivity.class);
+        if(role.equalsIgnoreCase("presenter"))
+            intent.putExtra("presenter", name);
+        if(role.equalsIgnoreCase("producer"))
+            intent.putExtra("producer",name);
+        MainController.displayScreen(intent);
+    }
+    public void programSeleced(String name) {
+        Intent intent = new Intent(MainController.getApp(), MaintainProgramSlotActivity.class);
+        intent.putExtra("programName", name);
+        MainController.displayScreen(intent);
+    }
 
     /**
      * API to fetch annual list
@@ -169,7 +184,7 @@ public class MaintainScheduleController {
      */
     public void displaySlotList(ProgramSlotListActivity slotListActivity){
         this.slotListActivity = slotListActivity;
-        new RetrieveProgramSlotDelegate(this).execute("2018-08-26 00:00:00");
+        new RetrieveProgramSlotDelegate(this).execute("all_programslots");
     }
 
     public void programSlotRetrieved(List<ProgramSlot> programSlotList){
@@ -190,6 +205,15 @@ public class MaintainScheduleController {
             maintainProgramSlot.createProgramSlot();
         else
             maintainProgramSlot.editProgramSlot(progSlotObj);
+    }
+
+    /**
+     * API to display create program Slot
+     * slot screen
+     */
+    public void createProgramSlot(){
+        Intent intentObj = new Intent(MainController.getApp(), MaintainProgramSlotActivity.class);
+        MainController.displayScreen(intentObj);
     }
 
     public void selectCreateProgramSlot(ProgramSlot ps) {

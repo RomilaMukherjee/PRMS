@@ -55,8 +55,6 @@
         <!-- <activity android:name=".programSchedule.android.ui.ScheduleProgramActivity"></activity> -->
         <activity android:name=".user.android.ui.UserListScreen" />
         <activity android:name=".programSchedule.android.ui.MaintainScheduleActivity" />
-        <activity android:name=".programSchedule.android.ui.CreateProgramSlotActivity" />
-        <activity android:name=".programSchedule.android.ui.UpdateProgramSlotActivity" />
         <activity android:name=".programSchedule.android.ui.ProducerPresenterListActivity" />
         <activity android:name=".programSchedule.android.ui.ProducerItemActivity" />
         <activity android:name=".PresenterListActivity" />
@@ -64,10 +62,10 @@
         <activity android:name=".programSchedule.android.ui.WeeklyScheduleListActivity" />
         <activity android:name=".programSchedule.android.ui.WeeklyScheduleItemActivity"/>
 
-        <!--<activity-->
-            <!--android:name=".programSchedule.android.ui.SelectScheduleActivity"-->
-            <!--android:label="@string/title_activity_select_schedule"-->
-            <!--android:theme="@style/AppTheme.NoActionBar"></activity>-->
+        <activity
+            android:name=".programSchedule.android.ui.SelectScheduleActivity"
+            android:label="@string/title_activity_select_schedule"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
 
     </application>
 
