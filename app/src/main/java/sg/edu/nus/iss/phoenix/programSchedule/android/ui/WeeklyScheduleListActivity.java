@@ -43,7 +43,7 @@ public class WeeklyScheduleListActivity extends AppCompatActivity {
                 Intent intent = new Intent(WeeklyScheduleListActivity.this, ProgramSlotListActivity.class);
                 intent.putExtra("WeekForSelectedAnnual", weekSchedule);
                 startActivity(intent);
-                WeeklyScheduleListActivity.this.finish();
+                //WeeklyScheduleListActivity.this.finish();
             }
         });
 

@@ -12,8 +12,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import sg.edu.nus.iss.phoenix.R;
+import sg.edu.nus.iss.phoenix.core.android.controller.ControlFactory;
 import sg.edu.nus.iss.phoenix.user.android.controller.UserController;
-import sg.edu.nus.iss.phoenix.user.android.delegate.RetrieveRoleDelegate;
 import sg.edu.nus.iss.phoenix.user.entity.Role;
 import sg.edu.nus.iss.phoenix.user.entity.User;
 
@@ -37,7 +37,7 @@ public class CreateUserScreen extends AppCompatActivity {
 
         final Spinner spinnerValue = (Spinner)findViewById(R.id.Role_Spinner);
 
-        ArrayList<Role> Roles = new ArrayList<Role>();
+        ArrayList<Role> rolesList = new ArrayList<Role>();
 
         Button submitButton = (Button)findViewById(R.id.ButtonAddUser);
         UserController userController= new UserController();
@@ -58,9 +58,10 @@ public class CreateUserScreen extends AppCompatActivity {
                 else{
 
                     //Adds a role to arraylist of roles specific to this user
-                    Roles.add(new Role(spinnerValue.getSelectedItem().toString()));
-                    User newuser = new User(idField.getText().toString(),passwordField.getText().toString(),nameField.getText().toString(),Roles);
-                    userController.saveUser(newuser);
+                    rolesList.add(new Role(spinnerValue.getSelectedItem().toString()));
+                    User newuser = new User(idField.getText().toString(),passwordField.getText().toString(),nameField.getText().toString(),rolesList);
+                    ControlFactory.getUserController().saveUser(newuser);
+                    //userController.saveUser(newuser);
 
                 }
 

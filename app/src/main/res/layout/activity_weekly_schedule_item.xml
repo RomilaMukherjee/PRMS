@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/week_startdate"
         android:layout_centerHorizontal="true"
-        android:textSize="20dp"/>
+        android:textStyle="bold"
+        android:textSize="25dp"/>
 
 </RelativeLayout>
