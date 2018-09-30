@@ -69,9 +69,12 @@ public class MaintainScheduleController {
         MainController.displayScreen(intent);
     }
 
-    public void producerPresenterSelected(String name) {
+    public void producerPresenterSelected(String name, String role) {
         Intent intent = new Intent(MainController.getApp(), MaintainProgramSlotActivity.class);
-        intent.putExtra("prodpres", name);
+        if(role.equalsIgnoreCase("presenter"))
+        intent.putExtra("presenter", name);
+        if(role.equalsIgnoreCase("producer"))
+        intent.putExtra("producer",name);
         MainController.displayScreen(intent);
     }
 

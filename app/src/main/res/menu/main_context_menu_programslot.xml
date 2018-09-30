@@ -5,7 +5,6 @@
     <item
         android:id="@+id/action_cancel"
         android:title="@string/action_cancel"
-
         app:showAsAction="always" />
     <item
         android:id="@+id/copy_slot_menu_item"

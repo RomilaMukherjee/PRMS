@@ -34,6 +34,46 @@
             android:textSize="20dp"
             android:layout_below="@+id/maintain_program_name_text_view"/>
 
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Producer"
+            tools:text="Producer" />
+        <EditText
+            android:id="@+id/maintain_program_slot_producer_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLength="8"
+            />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/view_producer"
+            android:text="Select Producer"
+            android:textSize="20dp"
+            android:layout_below="@+id/maintain_program_slot_producer_text_view"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Presenter"
+            tools:text="Presenter" />
+        <EditText
+            android:id="@+id/maintain_program_slot_presenter_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLength="8"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/view_presenter"
+            android:text="Select Presenter"
+            android:textSize="20dp"
+            android:layout_below="@+id/maintain_program_slot_presenter_text_view"/>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -82,44 +122,6 @@
             android:maxLength="8"
             />
 
-           <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Producer"
-            tools:text="Producer" />
-        <EditText
-            android:id="@+id/maintain_program_slot_producer_text_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:maxLength="8"
-            />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/view_producer"
-            android:text="Select Producer"
-            android:textSize="20dp"
-            android:layout_below="@+id/maintain_program_slot_producer_text_view"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Presenter"
-            tools:text="Presenter" />
-        <EditText
-            android:id="@+id/maintain_program_slot_presenter_text_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:maxLength="8"
-            />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/view_presenter"
-            android:text="Select Presenter"
-            android:textSize="20dp"
-            android:layout_below="@+id/maintain_program_slot_presenter_text_view"/>
 
 
         <!-- Login Button -->
