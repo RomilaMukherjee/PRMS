@@ -85,7 +85,7 @@ public class RetrieveProgramSlotDelegate extends AsyncTask<String, Void, String>
                 for (int i = 0; i < psArray.length(); i++) {
                     JSONObject asJson = psArray.getJSONObject(i);
                     String duration = asJson.getString("duration");
-                    String programName = asJson.getString("programName");
+                    String programName = asJson.getString("programSlotName");
                     String dateofProgram = asJson.getString("dateofProgram");
                     String startTime = asJson.getString("startTime");
                     String weekStartDate = asJson.getString("weekStartDate");
