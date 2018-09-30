@@ -46,6 +46,9 @@ protected Boolean doInBackground(ProgramSlot... programSlot) {
         json.put("dateOfProgram", programSlot[0].getDateOfProgram());
         json.put("time", programSlot[0].getTime());
         json.put("startTime", programSlot[0].getStartTime());
+        json.put("weekStartDate", programSlot[0].getWeekStartDate());
+        json.put("producer", programSlot[0].getProducerName());
+        json.put("presenter", programSlot[0].getPresenterName());
         } catch (JSONException e) {
         Log.v(TAG, e.getMessage());
         }

@@ -18,11 +18,18 @@ public class ProgramSlot implements Serializable {
     private String producerName;
     private String presenterName;
 
-    public ProgramSlot(String programName, String dateOfProgram, String startTime,String time) {
+    public  ProgramSlot(){
+
+    }
+    public ProgramSlot(String programName, String dateOfProgram, String startTime,String time,
+                       String weekStartDate, String producerName,String presenterName) {
         this.programName = programName;
         this.dateOfProgram = dateOfProgram;
         this.startTime = startTime;
         this.time =time;
+        this.weekStartDate=weekStartDate;
+        this.producerName=producerName;
+        this.presenterName=presenterName;
     }
 
     public String getProgramName() {

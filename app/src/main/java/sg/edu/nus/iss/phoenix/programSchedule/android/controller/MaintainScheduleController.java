@@ -26,8 +26,7 @@ import sg.edu.nus.iss.phoenix.programSchedule.entity.AnnualSchedule;
 import sg.edu.nus.iss.phoenix.programSchedule.entity.ProgramSlot;
 import sg.edu.nus.iss.phoenix.programSchedule.entity.WeeklySchedule;
 import sg.edu.nus.iss.phoenix.programSchedule.android.delegate.RetriveProducerPresenterDelegate;
-import sg.edu.nus.iss.phoenix.user.entity.User;
-import sg.edu.nus.iss.phoenix.utility.ApplicationConstant;
+import sg.edu.nus.iss.phoenix.user.android.entity.User;
 
 /**
  * Created by Ragu on 18/9/2018.
@@ -180,4 +179,30 @@ public class MaintainScheduleController {
             weeklyScheduleListActivity.showWeeklySchedules(weeklySchedules);
         }
     }
+
+    public void onDisplayProgram(MaintainProgramSlotActivity maintainProgramSlot) {
+        this.slotCreateScreen = maintainProgramSlot;
+        if (progSlotObj == null)
+            maintainProgramSlot.createProgramSlot();
+        else
+            maintainProgramSlot.editProgramSlot(progSlotObj);
+    }
+
+    public void selectCreateProgramSlot(ProgramSlot ps) {
+        new CreateProgramSlotDelegate(this).execute(ps);
+    }
+
+    public void selectCancelCreateEditProgramSlot() {
+        // Go back to ProgramList screen with refreshed programs.
+        startUseCase();
+    }
+
+    public void selectUpdateProgramSlot(ProgramSlot ps) {
+        new UpdateProgramSlotDelegate(this).execute(ps);
+    }
+
+    public void selectDeleteProgramSlot(ProgramSlot ps) {
+        new DeleteProgramSlotDelegate(this).execute(ps.getStartTime());
+    }
+
 }

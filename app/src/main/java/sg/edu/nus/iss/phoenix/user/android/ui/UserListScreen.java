@@ -1,10 +1,12 @@
 package sg.edu.nus.iss.phoenix.user.android.ui;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -25,12 +27,23 @@ public class UserListScreen extends AppCompatActivity {
     private UserAdapter mUAdapter;
     private FloatingActionButton createAUserButton;
 
+    interface DeleteClickListener {
+        public void onDelete (User user, Context context);
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_userlist);
         ArrayList<User> users = new ArrayList<User>();
-        mUAdapter = new UserAdapter(this, users);
+        mUAdapter = new UserAdapter(this, users, new DeleteClickListener() {
+            @Override
+            public void onDelete(User user, Context context) {
+                Log.d("asd", "on delete has been clicked " + user.toString());
+                ControlFactory.getUserController().onDeleteUser(user, context);
+            }
+        });
 
         mListView = (ListView) findViewById(R.id.user_list);
         createAUserButton = (FloatingActionButton)findViewById(R.id.fab);
@@ -38,19 +51,10 @@ public class UserListScreen extends AppCompatActivity {
         mListView.setAdapter(mUAdapter);
 
         // Setup the item selection listener
-        mListView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                // Log.v(TAG, "Radio program at position " + position + " selected.");
-                User user = (User) adapterView.getItemAtPosition(position);
-                // Log.v(TAG, "Radio program name is " + rp.getRadioProgramName());
-                selectedUser = user;
-            }
-
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-                // your stuff
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectedUser = (User) parent.getItemAtPosition(position);
             }
         });
 
@@ -58,7 +62,6 @@ public class UserListScreen extends AppCompatActivity {
         createAUserButton.setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v){
-
                 Intent goToCreateUser = new Intent(UserListScreen.this,CreateUserScreen.class);
                 startActivity(goToCreateUser);
             }

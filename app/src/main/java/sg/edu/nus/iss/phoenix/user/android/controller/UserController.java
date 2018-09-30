@@ -1,12 +1,14 @@
 package sg.edu.nus.iss.phoenix.user.android.controller;
 
 
+import android.content.Context;
 import android.content.Intent;
 
 import java.util.List;
 
 import sg.edu.nus.iss.phoenix.core.android.controller.MainController;
 import sg.edu.nus.iss.phoenix.user.android.delegate.CreateUserDelegate;
+import sg.edu.nus.iss.phoenix.user.android.delegate.DeleteUserDelegate;
 import sg.edu.nus.iss.phoenix.user.android.delegate.RetrieveUsersDelegate;
 import sg.edu.nus.iss.phoenix.user.entity.User;
 import sg.edu.nus.iss.phoenix.user.android.ui.UserListScreen;
@@ -35,5 +37,9 @@ public class UserController {
        createUserDelegate = new CreateUserDelegate();
        createUserDelegate.execute(user);
 
+    }
+
+    public void onDeleteUser(User user, Context context) {
+        new DeleteUserDelegate(this, context).execute(user.getId());
     }
 }

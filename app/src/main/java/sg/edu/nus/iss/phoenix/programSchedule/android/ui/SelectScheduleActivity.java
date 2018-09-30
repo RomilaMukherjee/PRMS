@@ -10,6 +10,7 @@ import android.widget.Button;
 
 import sg.edu.nus.iss.phoenix.R;
 import sg.edu.nus.iss.phoenix.core.android.controller.ControlFactory;
+import sg.edu.nus.iss.phoenix.programSchedule.entity.ProgramSlot;
 
 public class SelectScheduleActivity extends AppCompatActivity {
 
@@ -26,6 +27,8 @@ public class SelectScheduleActivity extends AppCompatActivity {
                 ControlFactory.getAnnualScheduleController().startAnnualSchedule();
             }
         });
+
+
     }
 
 }

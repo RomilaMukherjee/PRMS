@@ -64,10 +64,10 @@
         <activity android:name=".programSchedule.android.ui.WeeklyScheduleListActivity" />
         <activity android:name=".programSchedule.android.ui.WeeklyScheduleItemActivity"/>
 
-        <activity
-            android:name=".programSchedule.android.ui.SelectScheduleActivity"
-            android:label="@string/title_activity_select_schedule"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <!--<activity-->
+            <!--android:name=".programSchedule.android.ui.SelectScheduleActivity"-->
+            <!--android:label="@string/title_activity_select_schedule"-->
+            <!--android:theme="@style/AppTheme.NoActionBar"></activity>-->
 
     </application>
 
