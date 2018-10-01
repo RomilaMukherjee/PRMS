@@ -232,8 +232,9 @@ public class MaintainProgramSlotActivity extends AppCompatActivity {
                     ProgramSlot ps = new ProgramSlot(mPNameEditText.getText().toString(), dateofProgram,startDate, duration,weekStartDate,
                             mPSProducerText.getText().toString(),mPSPresenterText.getText().toString());
                     Log.v(TAG,"Program slot :"+ ps.getWeekStartDate() + " " + ps.getStartTime() + " " + ps.getDateOfProgram());
-                    ControlFactory.getMaintainScheduleController().selectCreateProgramSlot(ps);
                     Toast.makeText(this,"Slot Created Successfully",Toast.LENGTH_LONG);
+                    ControlFactory.getMaintainScheduleController().selectCreateProgramSlot(ps);
+
                     editor.clear();
                 }
                 else { // Edited.
@@ -252,6 +253,7 @@ public class MaintainProgramSlotActivity extends AppCompatActivity {
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
+                        editor.clear();
                     }
 
                     if(mPSDurationEditText.getText().toString() != null || mPSDurationEditText.getText().toString() != " " || !mPSDurationEditText.getText().toString().isEmpty())
@@ -293,6 +295,40 @@ public class MaintainProgramSlotActivity extends AppCompatActivity {
                 Log.v(TAG, "Canceling creating/editing  program slot...");
                 ControlFactory.getMaintainScheduleController().selectCancelCreateEditProgramSlot();
                 return true;
+
+            case R.id.copy_slot_menu_item:
+                // copy program slot.
+                programSlot.setProgramName(mPNameEditText.getText().toString());
+                programSlot.setPresenterName(mPSPresenterText.getText().toString());
+                programSlot.setProducerName(mPSProducerText.getText().toString());
+
+                if((mPSStartDateText.getText().toString() != null || mPSStartDateText.getText().toString() != " " || !mPSStartDateText.getText().toString().isEmpty())
+                        &&(mPSWeekEditText.getText().toString() != null || mPSWeekEditText.getText().toString() != " " || !mPSWeekEditText.getText().toString().isEmpty())
+                        &&(mPSStartTimeText.getText().toString() != null || mPSStartTimeText.getText().toString() != " " || !mPSStartTimeText.getText().toString().isEmpty())){
+                    try {
+                        startDate = simpleDateFormat.parse(mPSStartTimeText.getText().toString());
+                        weekStartDate = simpleDateFormat.parse(mPSWeekEditText.getText().toString());
+                        dateofProgram= simpleDateFormat.parse(mPSStartDateText.getText().toString());
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    editor.clear();
+                }
+
+                if(mPSDurationEditText.getText().toString() != null || mPSDurationEditText.getText().toString() != " " || !mPSDurationEditText.getText().toString().isEmpty())
+                {
+                    try {
+                        duration = timeFormat.parse(mPSDurationEditText.getText().toString());
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+
+                ProgramSlot ps = new ProgramSlot(programSlot.getProgramName(), dateofProgram,startDate, duration,weekStartDate,
+                        programSlot.getProducerName().toString(),programSlot.getPresenterName().toString());
+                ControlFactory.getMaintainScheduleController().selectCreateProgramSlot(ps);
+                editor.clear();
         }
 
         return true;
