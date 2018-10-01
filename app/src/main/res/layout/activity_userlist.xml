@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".radioprogram.android.ui.ProgramListScreen">
+    tools:context="sg.edu.nus.iss.phoenix.user.android.ui.UserListScreen">
     <ListView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -16,7 +16,7 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
-        tools:context=".users.ui.UserListScreen">
+        tools:context="sg.edu.nus.iss.phoenix.user.android.ui.UserListScreen">
 
     </ListView>
 

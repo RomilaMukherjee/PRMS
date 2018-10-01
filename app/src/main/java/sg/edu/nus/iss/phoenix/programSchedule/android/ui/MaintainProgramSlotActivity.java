@@ -206,7 +206,7 @@ public class MaintainProgramSlotActivity extends AppCompatActivity {
             case R.id.save_slot_menu_item:
                 // Save radio program.
                 if (editProgramSlot==null) { // Newly created.
-                    Log.v(TAG, "Creating program slot" + editProgramSlot.getProgramName() + "...");
+                    //Log.v(TAG, "Creating program slot" + editProgramSlot.getProgramName() + "...");
                     if((mPSStartDateText.getText().toString() != null || mPSStartDateText.getText().toString() != " " || !mPSStartDateText.getText().toString().isEmpty())
                           &&(mPSWeekEditText.getText().toString() != null || mPSWeekEditText.getText().toString() != " " || !mPSWeekEditText.getText().toString().isEmpty())
                     &&(mPSStartTimeText.getText().toString() != null || mPSStartTimeText.getText().toString() != " " || !mPSStartTimeText.getText().toString().isEmpty())){

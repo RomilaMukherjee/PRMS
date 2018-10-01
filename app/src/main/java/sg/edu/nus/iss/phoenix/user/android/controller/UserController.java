@@ -10,6 +10,7 @@ import sg.edu.nus.iss.phoenix.core.android.controller.MainController;
 import sg.edu.nus.iss.phoenix.user.android.delegate.CreateUserDelegate;
 import sg.edu.nus.iss.phoenix.user.android.delegate.DeleteUserDelegate;
 import sg.edu.nus.iss.phoenix.user.android.delegate.RetrieveUsersDelegate;
+import sg.edu.nus.iss.phoenix.user.android.delegate.UpdateUserDelegate;
 import sg.edu.nus.iss.phoenix.user.entity.User;
 import sg.edu.nus.iss.phoenix.user.android.ui.UserListScreen;
 
@@ -34,6 +35,10 @@ public class UserController {
 
     public void saveUser(User user){
         new CreateUserDelegate(this).execute(user);
+    }
+
+    public void updateUser(User user) {
+        new UpdateUserDelegate(this).execute(user);
     }
 
     public void onDeleteUser(User user, Context context) {
