@@ -75,7 +75,6 @@ public class ProgramSlotListActivity extends AppCompatActivity {
         slotAdapter.clear();
         Log.v(TAG, "List of Slots is :" + programSlots.size());
         for (int i = 0; i < programSlots.size(); i++) {
-            Log.d(TAG,"Inside program slot.."+programSlots.get(i).getProgramName());
             slotAdapter.add(programSlots.get(i));
         }
     }
