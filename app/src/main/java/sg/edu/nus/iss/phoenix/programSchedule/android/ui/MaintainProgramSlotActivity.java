@@ -50,6 +50,7 @@ public class MaintainProgramSlotActivity extends AppCompatActivity {
     private static final String TAG = "MaintainProgramSlotActivity";
     final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     Date startDate= null;
     Date weekStartDate =null;
     Date dateofProgram=null;
@@ -119,12 +120,15 @@ public class MaintainProgramSlotActivity extends AppCompatActivity {
 
         if(editProgramSlot!=null)
         {
-            Log.v("editSlot",editProgramSlot.getDateOfProgram().toString());
-            ProgramSlot slotObj = new ProgramSlot(editProgramSlot.getProgramName(), editProgramSlot.getDateOfProgram(),
-                    editProgramSlot.getStartTime(), editProgramSlot.getDuration(),editProgramSlot.getWeekStartDate(),
+            Log.v("editSlot",editProgramSlot.getProgramName());
+            ProgramSlot slotObj = new ProgramSlot(editProgramSlot.getProgramName(),
+                    editProgramSlot.getDateOfProgram(),
+                    editProgramSlot.getStartTime(), editProgramSlot.getDuration(),
+                    editProgramSlot.getWeekStartDate(),
                     editProgramSlot.getProducerName(),editProgramSlot.getPresenterName());
             //ControlFactory.getMaintainScheduleController().copyProgramSlot(slotObj);
             editMode=true;
+
             mPNameEditText.setText(slotObj.getProgramName());
                 mPSStartDateText.setText(slotObj.getDateOfProgram().toString());
                 mPSStartTimeText.setText(slotObj.getStartTime().toString());
@@ -137,8 +141,6 @@ public class MaintainProgramSlotActivity extends AppCompatActivity {
                 Log.d(TAG, "weekstart date" + slotObj.getWeekStartDate());
                 mPSProducerText.setText(slotObj.getProducerName());
                 mPSPresenterText.setText(slotObj.getPresenterName());
-
-
         }
 
         producerButton.setOnClickListener(new View.OnClickListener() {
@@ -203,8 +205,8 @@ public class MaintainProgramSlotActivity extends AppCompatActivity {
             // Respond to a click on the "Save" menu option
             case R.id.save_slot_menu_item:
                 // Save radio program.
-                if (!editMode) { // Newly created.
-                    Log.v(TAG, "Saving program slot" + mPNameEditText.getText().toString() + "...");
+                if (editProgramSlot==null) { // Newly created.
+                    Log.v(TAG, "Creating program slot" + editProgramSlot.getProgramName() + "...");
                     if((mPSStartDateText.getText().toString() != null || mPSStartDateText.getText().toString() != " " || !mPSStartDateText.getText().toString().isEmpty())
                           &&(mPSWeekEditText.getText().toString() != null || mPSWeekEditText.getText().toString() != " " || !mPSWeekEditText.getText().toString().isEmpty())
                     &&(mPSStartTimeText.getText().toString() != null || mPSStartTimeText.getText().toString() != " " || !mPSStartTimeText.getText().toString().isEmpty())){
@@ -230,38 +232,25 @@ public class MaintainProgramSlotActivity extends AppCompatActivity {
                             mPSProducerText.getText().toString(),mPSPresenterText.getText().toString());
                     Log.v(TAG,"Program slot :"+ ps.getWeekStartDate() + " " + ps.getStartTime() + " " + ps.getDateOfProgram());
                     ControlFactory.getMaintainScheduleController().selectCreateProgramSlot(ps);
+                    Toast.makeText(this,"Slot Created Successfully",Toast.LENGTH_LONG);
                     editor.clear();
                 }
                 else { // Edited.
-                    Log.v(TAG, "Saving program slot" + programSlot.getProgramName() + "...");
+                    Log.v(TAG, "Saving program slot" + mPSStartDateText.getText().toString() + "...");
                     programSlot.setProgramName(mPNameEditText.getText().toString());
-                    programSlot.setDateOfProgram(dateofProgram);
-                    programSlot.setStartTime(startDate);
-                    programSlot.setDuration(duration);
-                    programSlot.setWeekStartDate(weekStartDate);
                     programSlot.setPresenterName(mPSPresenterText.getText().toString());
                     programSlot.setProducerName(mPSProducerText.getText().toString());
 
-                    if((programSlot.getStartTime().toString() != null || programSlot.getStartTime().toString() != " " || !programSlot.getStartTime().toString().isEmpty())
-                            &&(programSlot.getDateOfProgram().toString() != null || programSlot.getDateOfProgram().toString() != " " || !programSlot.getDateOfProgram().toString().isEmpty())
-                            &&(programSlot.getWeekStartDate().toString() != null || programSlot.getWeekStartDate().toString() != " " || !programSlot.getWeekStartDate().toString().isEmpty())){
-                        try {
-                            startDate = simpleDateFormat.parse(programSlot.getStartTime().toString());
-                            weekStartDate = simpleDateFormat.parse(programSlot.getWeekStartDate().toString());
-                            dateofProgram= simpleDateFormat.parse(programSlot.getDateOfProgram().toString());
+                    try {
+                            duration = timeFormat.parse(mPSDurationEditText.getText().toString());
+                            startDate = simpleDateFormat.parse(mPSStartTimeText.getText().toString());
+                            weekStartDate = simpleDateFormat.parse(mPSWeekEditText.getText().toString());
+                            dateofProgram= simpleDateFormat.parse(mPSStartDateText.getText().toString());
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
-                    }
 
-                    if(programSlot.getDuration().toString() != null || programSlot.getDuration().toString() != " " || !programSlot.getDuration().toString().isEmpty())
-                    {
-                        try {
-                            duration = timeFormat.parse(programSlot.getDuration().toString());
-                        } catch (ParseException e) {
-                            e.printStackTrace();
-                        }
-                    }
+
                     ProgramSlot ps = new ProgramSlot(programSlot.getProgramName().toString(), dateofProgram,startDate, duration,weekStartDate,
                             programSlot.getProducerName().toString(),programSlot.getPresenterName().toString());
                     ControlFactory.getMaintainScheduleController().selectUpdateProgramSlot(programSlot);
