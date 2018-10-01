@@ -1,6 +1,8 @@
 package sg.edu.nus.iss.phoenix.user.entity;
 
-public class Role {
+import java.io.Serializable;
+
+public class Role implements Serializable {
     /**
      * For eclipse based unique identity
      */
