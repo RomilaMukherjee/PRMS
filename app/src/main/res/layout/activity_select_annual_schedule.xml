@@ -6,12 +6,38 @@
     android:layout_height="match_parent"
     tools:context="sg.edu.nus.iss.phoenix.programSchedule.android.ui.SelectScheduleActivity">
 
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:id="@+id/appbar_annual_select">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_select_annual_week"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Before creating slot, please select annual and weekly schedule "
+        android:padding="8dip"
+        android:layout_below="@id/appbar_annual_select"
+        android:id="@+id/textForSelection"
+        />
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/program_annual_schedule"
+        android:layout_centerInParent="true"
         android:text="Select Annual and Weekly Schedule"
-        android:textSize="20dp"/>
+        android:textSize="16dp"/>
 
 
 </RelativeLayout>
