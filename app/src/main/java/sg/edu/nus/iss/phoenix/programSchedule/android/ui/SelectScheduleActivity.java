@@ -20,6 +20,9 @@ public class SelectScheduleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_annual_schedule);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_select_annual_week);
+        setSupportActionBar(toolbar);
         program_annual_schedule = (Button) findViewById(R.id.program_annual_schedule);
         program_annual_schedule.setOnClickListener(new View.OnClickListener() {
             @Override
