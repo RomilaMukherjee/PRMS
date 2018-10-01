@@ -48,7 +48,7 @@ public class UpdateProgramSlotDelegate extends AsyncTask<ProgramSlot, Void, Bool
         try {
             json.put("programName", programSlot[0].getProgramName());
             json.put("dateofProgram", sdformat.format(programSlot[0].getDateOfProgram()));
-            json.put("time", timeFormat.format(programSlot[0].getDuration()));
+            json.put("duration", timeFormat.format(programSlot[0].getDuration()));
             json.put("startTime", sdformat.format(programSlot[0].getStartTime()));
             json.put("weekStartDate", sdformat.format(programSlot[0].getWeekStartDate()));
             json.put("producer", programSlot[0].getProducerName());
@@ -71,6 +71,7 @@ public class UpdateProgramSlotDelegate extends AsyncTask<ProgramSlot, Void, Bool
             dos.writeUTF(json.toString());
             dos.write(256);
             Log.v(TAG, "Http POST response " + httpURLConnection.getResponseCode());
+            Log.v("SendingData" , json.toString());
             success = true;
         } catch (IOException exception) {
             Log.v(TAG, exception.getMessage());

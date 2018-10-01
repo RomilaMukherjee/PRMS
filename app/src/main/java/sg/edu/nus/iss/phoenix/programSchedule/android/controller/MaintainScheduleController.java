@@ -231,13 +231,13 @@ public class MaintainScheduleController {
     }
 
     public void selectDeleteProgramSlot(ProgramSlot ps) {
-        Date startDate = null;
-        try {
-            startDate= simpleDateFormat.parse(ps.getStartTime().toString());
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        new DeleteProgramSlotDelegate(this).execute(String.valueOf(startDate));
+//        Date startDate = null;
+//        try {
+//            startDate= simpleDateFormat.parse(ps.getStartTime().toString());
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+        new DeleteProgramSlotDelegate(this).execute(ps);
     }
 
 }

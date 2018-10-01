@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -41,7 +42,8 @@ public class WeeklyScheduleListActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 WeeklySchedule weekSchedule = (WeeklySchedule) adapterView.getItemAtPosition(position);
                 Intent intent = new Intent(WeeklyScheduleListActivity.this, ProgramSlotListActivity.class);
-                intent.putExtra("WeekForSelectedAnnual", weekSchedule);
+                intent.putExtra("WeekForSelectedAnnual", weekSchedule.getStartDate().toString());
+                Log.v("WeekSelected", weekSchedule.getStartDate().toString());
                 startActivity(intent);
                 //WeeklyScheduleListActivity.this.finish();
             }

@@ -2,6 +2,7 @@ package sg.edu.nus.iss.phoenix.programSchedule.android.delegate;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -15,6 +16,7 @@ import java.text.SimpleDateFormat;
 
 import sg.edu.nus.iss.phoenix.programSchedule.android.controller.MaintainScheduleController;
 import sg.edu.nus.iss.phoenix.programSchedule.entity.ProgramSlot;
+import sg.edu.nus.iss.phoenix.user.android.delegate.RetrieveUsersDelegate;
 
 import static sg.edu.nus.iss.phoenix.core.android.delegate.DelegateHelper.PRMS_BASE_URL_PROGRAM_SCHEDULE;
 
@@ -47,7 +49,7 @@ protected Boolean doInBackground(ProgramSlot... programSlot) {
         try {
         json.put("programName", programSlot[0].getProgramName());
         json.put("dateofProgram", sdformat.format(programSlot[0].getDateOfProgram()));
-        json.put("time", timeFormat.format(programSlot[0].getDuration()));
+        json.put("duration", timeFormat.format(programSlot[0].getDuration()));
         json.put("startTime", sdformat.format(programSlot[0].getStartTime()));
         json.put("weekStartDate", sdformat.format(programSlot[0].getWeekStartDate()));
         json.put("producer", programSlot[0].getProducerName());
@@ -90,7 +92,13 @@ protected Boolean doInBackground(ProgramSlot... programSlot) {
 
 @Override
 protected void onPostExecute(Boolean result) {
-        maintainScheduleController.programSlotCreated(result.booleanValue());
+
+        if (result) {
+              //  Toast.makeText(context, "Program Slot Created successfully", Toast.LENGTH_SHORT).show();
+                maintainScheduleController.programSlotCreated(result.booleanValue());
+        } else {
+               // Toast.makeText(context, "Could not create Program Slot", Toast.LENGTH_SHORT).show();
+        }
         }
         }
 

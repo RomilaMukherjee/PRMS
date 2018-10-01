@@ -5,21 +5,28 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
 
 import sg.edu.nus.iss.phoenix.programSchedule.android.controller.MaintainScheduleController;
+import sg.edu.nus.iss.phoenix.programSchedule.entity.ProgramSlot;
 import sg.edu.nus.iss.phoenix.radioprogram.android.controller.ProgramController;
 
 import static sg.edu.nus.iss.phoenix.core.android.delegate.DelegateHelper.PRMS_BASE_URL_RADIO_PROGRAM;
 
-public class DeleteProgramSlotDelegate extends AsyncTask<String, Void, Boolean> {
+public class DeleteProgramSlotDelegate extends AsyncTask<ProgramSlot, Void, Boolean> {
     // Tag for logging
     private static final String TAG = DeleteProgramSlotDelegate.class.getName();
+    SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+    SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
 
     private final MaintainScheduleController maintainScheduleController;
 
@@ -28,18 +35,12 @@ public class DeleteProgramSlotDelegate extends AsyncTask<String, Void, Boolean> 
     }
 
     @Override
-    protected Boolean doInBackground(String... params) {
+    protected Boolean doInBackground(ProgramSlot... programSlots) {
         // Encode the name of radio program in case of the presence of special characters.
-        String name = null;
-        try {
-            name = URLEncoder.encode(params[0], "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            Log.v(TAG, e.getMessage());
-            return new Boolean(false);
-        }
+
         Uri builtUri = Uri.parse(PRMS_BASE_URL_RADIO_PROGRAM).buildUpon().build();
         builtUri = Uri.withAppendedPath(builtUri,"delete").buildUpon().build();
-        builtUri = Uri.withAppendedPath(builtUri, name).buildUpon().build();
+       // builtUri = Uri.withAppendedPath(builtUri, name).buildUpon().build();
         Log.v(TAG, builtUri.toString());
         URL url = null;
         try {
@@ -49,6 +50,13 @@ public class DeleteProgramSlotDelegate extends AsyncTask<String, Void, Boolean> 
             return new Boolean(false);
         }
 
+        JSONObject json = new JSONObject();
+        try {
+            json.put("dateofProgram", sdformat.format(programSlots[0].getDateOfProgram()));
+            json.put("startTime", sdformat.format(programSlots[0].getStartTime()));
+        } catch (JSONException e) {
+            Log.v(TAG, e.getMessage());
+        }
         boolean success = false;
         HttpURLConnection httpURLConnection = null;
         try {
